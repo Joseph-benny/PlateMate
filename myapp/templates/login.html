@@ -1,0 +1,278 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'login/fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'login/css/owl.carousel.min.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'login/css/bootstrap.min.css' %}">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
+
+    <style>
+        /* Custom validation styles */
+        .form-group {
+            position: relative;
+        }
+
+        .validation-icon {
+            position: absolute;
+            right: 15px;
+            top: 38px;
+            display: none;
+            font-size: 16px;
+        }
+
+        .fa-check-circle {
+            color: #28a745;
+        }
+
+        .fa-exclamation-circle {
+            color: #dc3545;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-control.error {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+        }
+
+        .form-control.success {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+
+        .btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+    </style>
+
+    <title>Login</title>
+
+  </head>
+  <body>
+
+
+  <div class="d-md-flex half">
+    <div class="bg" style="background-image: url({% static 'login/images/bg_1.jpg' %});"></div>
+    <div class="contents">
+
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-12">
+            <div class="form-block mx-auto">
+              <div class="text-center mb-5">
+              <h3><strong>Login</strong></h3>
+              <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
+              </div>
+              <form action="#" method="post" id="loginForm">
+                  {% csrf_token %}
+                <div class="form-group first">
+                  <label for="username">Email</label>
+                  <input type="text" class="form-control" name="email" placeholder="your-email@gmail.com" id="email">
+                  <i class="fas fa-check-circle validation-icon" id="email-success"></i>
+                  <i class="fas fa-exclamation-circle validation-icon" id="email-error"></i>
+                  <div class="error-message" id="email-error-message">
+                      Please enter a valid email address
+                  </div>
+                </div>
+                <div class="form-group last mb-3">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" name="password" placeholder="Your Password" id="password">
+                  <i class="fas fa-check-circle validation-icon" id="password-success"></i>
+                  <i class="fas fa-exclamation-circle validation-icon" id="password-error"></i>
+                  <div class="error-message" id="password-error-message">
+                      Password is required
+                  </div>
+                </div>
+
+                <div class="d-sm-flex mb-5 align-items-center">
+                  <label class="control control--checkbox mb-3 mb-sm-0"><span class="caption">Remember me</span>
+                    <input type="checkbox" checked="checked"/>
+                    <div class="control__indicator"></div>
+                  </label>
+                  <span class="ml-auto"><a href="/email/" class="forgot-pass">Forgot Password</a></span>
+                </div>
+
+                <input type="submit" value="Log In" class="btn btn-block btn-primary" id="loginBtn">
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+    <script src="{% static 'login/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'login/js/popper.min.js' %}"></script>
+    <script src="{% static 'login/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'login/js/main.js' %}"></script>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const loginBtn = document.getElementById('loginBtn');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+
+            // Email validation function
+            function validateEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email.trim());
+            }
+
+            // Password validation function
+            function validatePassword(password) {
+                return password.length >= 1; // At least 1 character required
+            }
+
+            // Show/hide validation icons and messages
+            function showValidation(field, isValid, successIcon, errorIcon, errorMessage) {
+                if (isValid) {
+                    field.classList.remove('error');
+                    field.classList.add('success');
+                    successIcon.style.display = 'block';
+                    errorIcon.style.display = 'none';
+                    errorMessage.style.display = 'none';
+                } else {
+                    field.classList.remove('success');
+                    field.classList.add('error');
+                    successIcon.style.display = 'none';
+                    errorIcon.style.display = 'block';
+                    errorMessage.style.display = 'block';
+                }
+            }
+
+            // Update login button state
+            function updateLoginButton() {
+                const isEmailValid = validateEmail(emailInput.value);
+                const isPasswordValid = validatePassword(passwordInput.value);
+
+                if (isEmailValid && isPasswordValid) {
+                    loginBtn.disabled = false;
+                } else {
+                    loginBtn.disabled = true;
+                }
+            }
+
+            // Real-time email validation
+            emailInput.addEventListener('input', function(e) {
+                const isValid = validateEmail(e.target.value);
+                showValidation(
+                    e.target,
+                    isValid,
+                    document.getElementById('email-success'),
+                    document.getElementById('email-error'),
+                    document.getElementById('email-error-message')
+                );
+                updateLoginButton();
+            });
+
+            // Real-time password validation
+            passwordInput.addEventListener('input', function(e) {
+                const isValid = validatePassword(e.target.value);
+                showValidation(
+                    e.target,
+                    isValid,
+                    document.getElementById('password-success'),
+                    document.getElementById('password-error'),
+                    document.getElementById('password-error-message')
+                );
+                updateLoginButton();
+            });
+
+            // Validate on blur as well
+            emailInput.addEventListener('blur', function(e) {
+                const isValid = validateEmail(e.target.value);
+                showValidation(
+                    e.target,
+                    isValid,
+                    document.getElementById('email-success'),
+                    document.getElementById('email-error'),
+                    document.getElementById('email-error-message')
+                );
+                updateLoginButton();
+            });
+
+            passwordInput.addEventListener('blur', function(e) {
+                const isValid = validatePassword(e.target.value);
+                showValidation(
+                    e.target,
+                    isValid,
+                    document.getElementById('password-success'),
+                    document.getElementById('password-error'),
+                    document.getElementById('password-error-message')
+                );
+                updateLoginButton();
+            });
+
+            // Form submission validation
+            loginForm.addEventListener('submit', function(e) {
+                const email = emailInput.value;
+                const password = passwordInput.value;
+
+                const isEmailValid = validateEmail(email);
+                const isPasswordValid = validatePassword(password);
+
+                // Trigger validation display
+                emailInput.dispatchEvent(new Event('input'));
+                passwordInput.dispatchEvent(new Event('input'));
+
+                if (!isEmailValid || !isPasswordValid) {
+                    e.preventDefault();
+
+                    // Scroll to first error
+                    const firstError = document.querySelector('.form-control.error');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        firstError.focus();
+                    }
+
+                    // Show loading state briefly
+                    loginBtn.disabled = true;
+                    loginBtn.value = 'Please fix errors...';
+                    setTimeout(() => {
+                        loginBtn.value = 'Log In';
+                        updateLoginButton();
+                    }, 1500);
+                } else {
+                    // All validations passed - show loading state
+                    loginBtn.disabled = true;
+                    loginBtn.value = 'Logging in...';
+                }
+            });
+
+            // Auto-format email input (convert to lowercase)
+            emailInput.addEventListener('blur', function(e) {
+                e.target.value = e.target.value.toLowerCase().trim();
+            });
+
+            // Initialize button state
+            updateLoginButton();
+        });
+    </script>
+  </body>
+</html>

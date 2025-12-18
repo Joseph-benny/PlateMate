@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>KitchenHandler - Registration</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Fonts -->
+	<link rel="stylesheet" type="text/css" href="{% static 'register/css/roboto-font.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'register/fonts/font-awesome-5/css/fontawesome-all.min.css' %}">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="{% static 'register/css/style.css' %}"/>
+    <style>
+        :root {
+            --primary-dark: #3A2618;
+            --primary-medium: #8B4513;
+            --primary-light: #D2691E;
+            --accent-orange: #FF8C00;
+            --accent-light: #FFA54F;
+            --text-light: #F5E6D3;
+            --text-dark: #2C1810;
+            --error-red: #FF6B6B;
+            --success-green: #4CAF50;
+            --background-gradient: linear-gradient(135deg, #3A2618 0%, #5D4037 50%, #8B4513 100%);
+            --form-gradient: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body.form-v5 {
+            background: var(--background-gradient);
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: var(--text-light);
+        }
+
+        .page-content {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        .form-v5-content {
+            background: rgba(42, 26, 16, 0.85);
+            border-radius: 20px;
+            padding: 40px 35px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4),
+                        0 0 30px rgba(210, 105, 30, 0.2);
+            border: 1px solid rgba(255, 140, 0, 0.2);
+            backdrop-filter: blur(10px);
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-v5-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(210, 105, 30, 0.3);
+        }
+
+        .form-detail h2 {
+            color: var(--accent-light);
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 35px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .form-detail h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-orange);
+            border-radius: 2px;
+        }
+
+        .form-row {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .form-row label {
+            display: block;
+            color: var(--accent-light);
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .input-text {
+            width: 100%;
+            padding: 15px 45px 15px 20px;
+            border: 2px solid rgba(139, 69, 19, 0.3);
+            border-radius: 12px;
+            font-size: 16px;
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .input-text::placeholder {
+            color: rgba(245, 230, 211, 0.6);
+        }
+
+        .input-text:focus {
+            border-color: var(--accent-orange);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.2);
+        }
+
+        .form-row i:not(.validation-icon) {
+            position: absolute;
+            right: 20px;
+            top: 38px;
+            color: var(--accent-light);
+            font-size: 16px;
+        }
+
+        .validation-icon {
+            position: absolute;
+            right: 45px;
+            top: 38px;
+            display: none;
+            font-size: 18px;
+        }
+
+        .fa-check-circle {
+            color: var(--success-green);
+        }
+
+        .fa-exclamation-circle {
+            color: var(--error-red);
+        }
+
+        .error-message {
+            color: var(--error-red);
+            font-size: 13px;
+            margin-top: 6px;
+            display: none;
+            padding-left: 5px;
+            font-weight: 500;
+        }
+
+        .input-text.error {
+            border-color: var(--error-red);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+        }
+
+        .input-text.success {
+            border-color: var(--success-green);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+
+        .form-row-last {
+            margin-top: 35px;
+            text-align: center;
+        }
+
+        .Register {
+            background: linear-gradient(135deg, var(--primary-medium), var(--accent-orange));
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(210, 105, 30, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .Register:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(210, 105, 30, 0.6);
+            background: linear-gradient(135deg, var(--accent-orange), var(--primary-light));
+        }
+
+        .Register:active {
+            transform: translateY(0);
+        }
+
+        .Register:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .Register::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .Register:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        /* Decorative elements */
+        .form-v5-content::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary-dark), var(--accent-orange), var(--primary-medium));
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-v5-content {
+                padding: 30px 25px;
+            }
+
+            .form-detail h2 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            .input-text {
+                padding: 14px 40px 14px 15px;
+            }
+
+            .Register {
+                padding: 14px 35px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-content {
+                padding: 10px;
+            }
+
+            .form-v5-content {
+                padding: 25px 20px;
+            }
+
+            .form-detail h2 {
+                font-size: 24px;
+                margin-bottom: 25px;
+            }
+        }
+
+        /* Loading animation */
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .Register.loading {
+            animation: pulse 1s infinite;
+        }
+
+        /* Success message styling */
+        .alert-success {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success-green);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease;
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="form-v5">
+	<div class="page-content">
+		<div class="form-v5-content">
+			<form class="form-detail" action="#" method="post" id="registrationForm">
+                {% csrf_token %}
+				<h2>Register Account</h2>
+
+				<!-- Full Name Field -->
+				<div class="form-row">
+					<label for="full-name">Full Name</label>
+					<input type="text" name="name" id="full-name" class="input-text" placeholder="Your Name" required>
+					<i class="fas fa-user"></i>
+					<i class="fas fa-check-circle validation-icon" id="name-success"></i>
+					<i class="fas fa-exclamation-circle validation-icon" id="name-error"></i>
+					<div class="error-message" id="name-error-message">
+						Full Name must contain only letters and spaces (2-50 characters)
+					</div>
+				</div>
+
+                <!-- Phone Number Field -->
+				<div class="form-row">
+					<label for="phone">Phone Number</label>
+					<input type="text" name="phone" id="phone" class="input-text" placeholder="Your Phone Number" required>
+					<i class="fas fa-phone"></i>
+					<i class="fas fa-check-circle validation-icon" id="phone-success"></i>
+					<i class="fas fa-exclamation-circle validation-icon" id="phone-error"></i>
+					<div class="error-message" id="phone-error-message">
+						Please enter a valid 10-digit phone number
+					</div>
+				</div>
+
+				<!-- Email Field -->
+				<div class="form-row">
+					<label for="email">Your Email</label>
+					<input type="text" name="email" id="email" class="input-text" placeholder="Your Email" required>
+					<i class="fas fa-envelope"></i>
+					<i class="fas fa-check-circle validation-icon" id="email-success"></i>
+					<i class="fas fa-exclamation-circle validation-icon" id="email-error"></i>
+					<div class="error-message" id="email-error-message">
+						Please enter a valid email address
+					</div>
+				</div>
+
+				<!-- Password Field -->
+				<div class="form-row">
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" class="input-text" placeholder="Your Password" required>
+					<i class="fas fa-lock"></i>
+					<i class="fas fa-check-circle validation-icon" id="password-success"></i>
+					<i class="fas fa-exclamation-circle validation-icon" id="password-error"></i>
+					<div class="error-message" id="password-error-message">
+						Password must be at least 8 characters long
+					</div>
+				</div>
+
+				<div class="form-row-last">
+					<input type="submit" name="register" class="Register" value="Register" id="submitBtn">
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const form = document.getElementById('registrationForm');
+			const submitBtn = document.getElementById('submitBtn');
+			const nameInput = document.getElementById('full-name');
+
+			// Validation functions
+			function validateFullName(name) {
+				const nameRegex = /^[A-Za-z\s]{2,50}$/;
+				return nameRegex.test(name.trim());
+			}
+
+			function validatePhoneNumber(phone) {
+				const phoneRegex = /^\d{10}$/;
+				return phoneRegex.test(phone.trim());
+			}
+
+			function validateEmail(email) {
+				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				return emailRegex.test(email.trim());
+			}
+
+			function validatePassword(password) {
+				return password.length >= 8;
+			}
+
+			// Show/hide validation icons and messages
+			function showValidation(field, isValid, successIcon, errorIcon, errorMessage) {
+				if (isValid) {
+					field.classList.remove('error');
+					field.classList.add('success');
+					successIcon.style.display = 'block';
+					errorIcon.style.display = 'none';
+					errorMessage.style.display = 'none';
+				} else {
+					field.classList.remove('success');
+					field.classList.add('error');
+					successIcon.style.display = 'none';
+					errorIcon.style.display = 'block';
+					errorMessage.style.display = 'block';
+				}
+			}
+
+			// Auto-capitalize only the first letter
+			function capitalizeFirstLetter(text) {
+				if (text.length === 0) return text;
+				return text.charAt(0).toUpperCase() + text.slice(1);
+			}
+
+			// Real-time validation with first letter capitalization
+			nameInput.addEventListener('input', function(e) {
+				const cursorPosition = e.target.selectionStart;
+				let value = e.target.value;
+
+				// Remove any non-letter and non-space characters
+				value = value.replace(/[^A-Za-z\s]/g, '');
+
+				// Limit to 50 characters
+				if (value.length > 50) {
+					value = value.substring(0, 50);
+				}
+
+				// Auto-capitalize only the first letter
+				if (value.length > 0) {
+					value = capitalizeFirstLetter(value);
+				}
+
+				// Update the value if changed
+				if (e.target.value !== value) {
+					e.target.value = value;
+					// Restore cursor position
+					e.target.setSelectionRange(cursorPosition, cursorPosition);
+				}
+
+				// Validate the name
+				const isValid = validateFullName(value);
+				showValidation(
+					e.target,
+					isValid,
+					document.getElementById('name-success'),
+					document.getElementById('name-error'),
+					document.getElementById('name-error-message')
+				);
+			});
+
+			// Also capitalize on blur
+			nameInput.addEventListener('blur', function(e) {
+				let value = e.target.value;
+				if (value.length > 0) {
+					value = capitalizeFirstLetter(value);
+					if (e.target.value !== value) {
+						e.target.value = value;
+					}
+				}
+			});
+
+			// Phone number validation
+			document.getElementById('phone').addEventListener('input', function(e) {
+				// Remove non-numeric characters
+				let value = e.target.value.replace(/\D/g, '');
+
+				// Limit to 10 digits
+				if (value.length > 10) {
+					value = value.substring(0, 10);
+				}
+
+				e.target.value = value;
+
+				const isValid = validatePhoneNumber(value);
+				showValidation(
+					e.target,
+					isValid,
+					document.getElementById('phone-success'),
+					document.getElementById('phone-error'),
+					document.getElementById('phone-error-message')
+				);
+			});
+
+			// Email validation
+			document.getElementById('email').addEventListener('input', function(e) {
+				const isValid = validateEmail(e.target.value);
+				showValidation(
+					e.target,
+					isValid,
+					document.getElementById('email-success'),
+					document.getElementById('email-error'),
+					document.getElementById('email-error-message')
+				);
+			});
+
+			// Password validation
+			document.getElementById('password').addEventListener('input', function(e) {
+				const isValid = validatePassword(e.target.value);
+				showValidation(
+					e.target,
+					isValid,
+					document.getElementById('password-success'),
+					document.getElementById('password-error'),
+					document.getElementById('password-error-message')
+				);
+			});
+
+			// Form submission validation
+			form.addEventListener('submit', function(e) {
+				e.preventDefault();
+
+				const name = document.getElementById('full-name').value;
+				const phone = document.getElementById('phone').value;
+				const email = document.getElementById('email').value;
+				const password = document.getElementById('password').value;
+
+				const isNameValid = validateFullName(name);
+				const isPhoneValid = validatePhoneNumber(phone);
+				const isEmailValid = validateEmail(email);
+				const isPasswordValid = validatePassword(password);
+
+				// Trigger validation display for all fields
+				document.getElementById('full-name').dispatchEvent(new Event('input'));
+				document.getElementById('phone').dispatchEvent(new Event('input'));
+				document.getElementById('email').dispatchEvent(new Event('input'));
+				document.getElementById('password').dispatchEvent(new Event('input'));
+
+				if (isNameValid && isPhoneValid && isEmailValid && isPasswordValid) {
+					// All validations passed - submit the form
+					submitBtn.disabled = true;
+					submitBtn.value = 'Registering...';
+					submitBtn.classList.add('loading');
+
+					// Add a small delay to show the loading state
+					setTimeout(() => {
+						form.submit();
+					}, 1000);
+				} else {
+					// Scroll to first error
+					const firstError = document.querySelector('.input-text.error');
+					if (firstError) {
+						firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+						firstError.focus();
+					}
+
+					// Show error animation
+					submitBtn.style.animation = 'none';
+					setTimeout(() => {
+						submitBtn.style.animation = 'shake 0.5s';
+					}, 10);
+				}
+			});
+
+			// Add shake animation for errors
+			const style = document.createElement('style');
+			style.textContent = `
+				@keyframes shake {
+					0%, 100% { transform: translateX(0); }
+					10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+					20%, 40%, 60%, 80% { transform: translateX(5px); }
+				}
+			`;
+			document.head.appendChild(style);
+
+			// Trim whitespace from all inputs on blur
+			const inputs = document.querySelectorAll('.input-text');
+			inputs.forEach(input => {
+				input.addEventListener('blur', function(e) {
+					e.target.value = e.target.value.trim();
+					// Trigger validation after trimming
+					e.target.dispatchEvent(new Event('input'));
+				});
+			});
+		});
+	</script>
+
+{% if msg %}
+    <script>
+        // Create a custom success message
+        const successMsg = document.createElement('div');
+        successMsg.className = 'alert-success';
+        successMsg.innerHTML = '<i class="fas fa-check-circle" style="margin-right: 10px;"></i>Registration Successful!';
+        document.body.appendChild(successMsg);
+
+        // Remove after 5 seconds
+        setTimeout(() => {
+            successMsg.style.animation = 'slideIn 0.3s ease reverse';
+            setTimeout(() => successMsg.remove(), 300);
+        }, 5000);
+    </script>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KitchenSync - Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'index/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'index/css/tailwind.css' %}">
+    <style>
+        :root {
+            --orange-50: #fff7ed;
+            --orange-100: #ffedd5;
+            --orange-200: #fed7aa;
+            --orange-300: #fdba74;
+            --orange-400: #fb923c;
+            --orange-500: #f97316;
+            --orange-600: #ea580c;
+            --orange-700: #c2410c;
+            --orange-800: #9a3412;
+            --orange-900: #7c2d12;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #fef3e2 0%, #ffedd5 50%, #fed7aa 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background: rgb(50,30,20);
+            color: white;
+            padding: 2rem 1.5rem;
+            position: fixed;
+            width: 280px;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 4px 0 20px rgba(234, 88, 12, 0.15);
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .nav-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.875rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(4px);
+        }
+
+        .nav-item.active {
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            grid-column: 2;
+            padding: 2rem;
+            margin-left: 280px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .header-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--orange-900);
+            margin: 0;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(234, 88, 12, 0.08);
+            border: 1px solid rgba(234, 88, 12, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(234, 88, 12, 0.12);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .stat-trend {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .trend-up {
+            color: #10b981;
+        }
+
+        .trend-down {
+            color: #ef4444;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--orange-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            color: var(--orange-600);
+            font-weight: 500;
+        }
+
+        /* Action Cards */
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .action-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(234, 88, 12, 0.1);
+            border: 1px solid rgba(234, 88, 12, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .action-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(234, 88, 12, 0.15);
+        }
+
+        .action-card.primary {
+            background: rgb(50,30,20);
+            color: white;
+        }
+
+        .action-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .action-card:not(.primary) .action-icon {
+            background: var(--orange-100);
+            color: var(--orange-600);
+        }
+
+        .action-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .action-description {
+            color: rgba(0,0,0,0.6);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .action-card.primary .action-description {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .action-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .action-card.primary .action-button {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .action-card:not(.primary) .action-button {
+            background: rgb(50,30,20);
+            color: white;
+        }
+
+        .action-button:hover {
+            transform: translateX(4px);
+        }
+
+        /* Recent Activity */
+        .recent-activity {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(234, 88, 12, 0.08);
+            border: 1px solid rgba(234, 88, 12, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--orange-900);
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .activity-item:hover {
+            background: var(--orange-50);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--orange-100);
+            color: var(--orange-600);
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            color: var(--orange-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-time {
+            font-size: 0.875rem;
+            color: var(--orange-500);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: var(--orange-500);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 0.75rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                grid-column: 1;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">👨‍🍳</div>
+                <div class="logo-text">KitchenSync</div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Main</div>
+                <a href="#dashboard" class="nav-item active">
+                    <div class="nav-icon">📊</div>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/menu/" class="nav-item">
+                    <div class="nav-icon">📝</div>
+                    <span>Menu Management</span>
+                </a>
+                <a href="/vieworders/" class="nav-item">
+                    <div class="nav-icon">📦</div>
+                    <span>Order Management</span>
+                </a>
+                 <a href="/logout/" class="nav-item">
+                    <div class="nav-icon"></div>
+                    <span>Logout</span>
+                </a>
+            </div>
+
+
+
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div>
+                    <h1 class="header-title">Kitchen Dashboard</h1>
+                    <p class="text-orange-600">Welcome back! Here's what's happening today.</p>
+                </div>
+                <div class="header-actions">
+                    <button class="mobile-menu-btn" id="mobileMenuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="bg-white rounded-xl p-2 shadow-sm">
+                        <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+
+
+
+
+            </div>
+
+            <!-- Main Action Cards -->
+            <div class="actions-grid">
+                <a href="/menu/" class="action-card primary fade-in-up">
+                    <div class="action-icon">
+                        📝
+                    </div>
+                    <h3 class="action-title">Manage Menu</h3>
+                    <p class="action-description">
+                        Add new dishes, update prices, upload images, and organize your menu categories. Keep your offerings fresh and appealing.
+                    </p>
+                    <div class="action-button">
+                        <span>Add Menu Items</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+
+                <a href="/vieworders/" class="action-card fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="action-icon">
+                        📋
+                    </div>
+                    <h3 class="action-title">View Orders</h3>
+                    <p class="action-description">
+                        Monitor incoming orders, track preparation status, manage kitchen workflow, and ensure timely order completion.
+                    </p>
+                    <div class="action-button">
+                        <span>View All Orders</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Recent Activity -->
+
+        </main>
+    </div>
+
+    <script src="{% static 'index/js/jquery-3.6.0.min.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            // Mobile menu toggle
+            $('#mobileMenuToggle').click(function() {
+                $('.sidebar').toggleClass('active');
+            });
+
+            // Close mobile menu when clicking outside
+            $(document).click(function(event) {
+                if (!$(event.target).closest('.sidebar').length &&
+                    !$(event.target).closest('#mobileMenuToggle').length &&
+                    $('.sidebar').hasClass('active')) {
+                    $('.sidebar').removeClass('active');
+                }
+            });
+
+            // Add hover effects to cards
+            $('.stat-card, .action-card').hover(
+                function() {
+                    $(this).addClass('transform transition-all duration-300');
+                },
+                function() {
+                    $(this).removeClass('transform transition-all duration-300');
+                }
+            );
+
+            // Smooth scrolling for anchor links
+            $('a[href^="#"]').on('click', function(event) {
+                event.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $($(this).attr('href')).offset().top - 100
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

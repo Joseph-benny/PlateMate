@@ -1,0 +1,69 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'kitchenhandler/fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'kitchenhandler/css/owl.carousel.min.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'kitchenhandler/css/bootstrap.min.css' %}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'kitchenhandler/css/style.css' %}">
+
+    <title>Manage Kitchen Handlers</title>
+  </head>
+  <body>
+  
+
+  <div class="content">
+    
+    <div class="container">
+      <h2 class="mb-5">Kitchen Handlers</h2>
+
+      <div class="table-responsive">
+
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone No:</th>
+              <th scope="col">Role</th>
+            </tr>
+          </thead>
+          <tbody>
+          {%  for i in kit %}
+          <tr>
+              <th scope="row" class="scope">{{forloop.counter}}</th>
+              <td>{{i.name}}</td>
+              <td>{{i.email}}</td>
+              <td>{{i.phone}}</td>
+              <td>{{i.rights}}</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+
+  </div>
+    
+    
+
+    <script src="{% static 'kitchenhandler/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'kitchenhandler/js/popper.min.js' %}"></script>
+    <script src="{% static 'kitchenhandler/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'kitchenhandler/js/main.js' %}"></script>
+  </body>
+</html>

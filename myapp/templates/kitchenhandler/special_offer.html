@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Special Offer</title>
+    <style>
+        /* Paste the provided CSS into this style block for a complete standalone file */
+        /* ... Your provided CSS ... */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #e74c3c;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #e74c3c;
+        }
+
+        /* Updated Search Bar Styles */
+        .flex.justify-center.mb-12 {
+            margin-bottom: 0;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .flex[style*="max-width: 1000px"] {
+            width: 100%;
+            max-width: 100% !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        input[type="search"] {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #3498db !important;
+            border-right: none !important;
+            font-size: 16px;
+            background: white;
+            color: #333;
+            transition: all 0.3s ease;
+            height: 50px !important;
+        }
+
+        input[type="search"]::placeholder {
+            color: #888;
+        }
+
+        input[type="search"]:focus {
+            border-color: #2980b9 !important;
+            background: #f8f9fa;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background: #3498db !important;
+            color: white;
+            border: 2px solid #3498db;
+            border-left: none;
+            padding: 0 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            height: 50px !important;
+        }
+
+        button[type="submit"]:hover {
+            background: #2980b9 !important;
+            border-color: #2980b9;
+            transform: none;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr; /* Simplified layout for this page */
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-danger1 {
+            background-color:darkorange;
+        }
+         .btn-danger1:hover {
+            background-color:darkred;
+        }
+
+        .item-selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .menu-item-radio {
+            display: flex;
+            align-items: center;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .menu-item-radio:hover {
+            background: #f0f0f0;
+            border-color: #ccc;
+        }
+
+        .menu-item-radio.selected {
+            background: #e3f2fd;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+        }
+
+        .menu-item-radio input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .offer-item-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .offer-item {
+            background: #fff;
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .offer-item:last-child {
+            border-bottom: none;
+        }
+
+        .offer-item strong {
+            color: #2c3e50;
+        }
+        /* End of CSS paste */
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Add Your<span>Menu</span></div>
+                <button class="btn btn-danger1" onclick="window.location.href='{% url "view_menu" %}'">Back to Menu</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="card">
+                <h2>⭐ Create New Special Offer</h2>
+
+                {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <p style="color:{% if message.tags == 'error' %}#e74c3c{% else %}#27ae60{% endif %}; font-weight: bold;">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="offer-name">Special Offer Name</label>
+                        <input type="text" id="offer-name" name="offer_name" placeholder="E.g., Weekend Family Combo" required>
+                    </div>
+
+                    <h3>Select a Menu Item for the Special Offer:</h3>
+                    <div class="form-group item-selection-grid">
+    {% for item in menu_items %}
+        <div class="menu-item-radio">
+            {% if item.itemimage %}
+            <img src="{{ item.itemimage.url }}" alt="{{ item.itemname }}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px; border-radius: 4px;">
+            {% endif %}
+            <input type="radio"
+                   id="item_{{ item.id }}"
+                   name="selected_item"
+                   value="{{ item.id }}"
+                   data-price="{{ item.itemprice }}">
+            <label for="item_{{ item.id }}" style="cursor: pointer;">
+                {{ item.itemname }} (₹{{ item.itemprice }})
+            </label>
+        </div>
+    {% empty %}
+        <p>No menu items available.</p>
+    {% endfor %}
+</div>
+                    <div class="form-group">
+    <hr style="margin: 20px 0;">
+    <h3 style="color: #3498db;">💰 Price Calculation</h3>
+    <p>Original Price: <strong id="original-price" style="font-size: 1.2em;">₹0</strong></p>
+    <p>Discount (30%): <strong style="color: #e67e22;">30% OFF</strong></p>
+    <p>Final Offer Price: <strong id="final-price" style="font-size: 1.4em; color: #27ae60;">₹0</strong></p>
+
+    <input type="hidden" id="offer-price-input" name="offer_price" value="0" required>
+    <hr style="margin: 20px 0;">
+</div>
+                    <button type="submit" class="btn">Create Special Offer</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>Existing Special Offers</h2>
+                <ul class="offer-item-list">
+                    {% for offer in existing_offers %}
+                        <li class="offer-item">
+                            <strong>{{ offer.offer_name }}</strong>
+                            <p>Item: {{ offer.items.itemname }} - ₹{{ offer.offer_price }}</p>
+                        </li>
+                    {% empty %}
+                        <p>No special offers have been created yet.</p>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const radioButtons = document.querySelectorAll('input[name="selected_item"]');
+        const originalPriceElement = document.getElementById('original-price');
+        const finalPriceElement = document.getElementById('final-price');
+        const offerPriceInput = document.getElementById('offer-price-input');
+        const DISCOUNT_RATE = 0.30; // 30% discount
+
+        function calculatePrices() {
+            let selectedPrice = 0;
+            let selectedItem = null;
+
+            // 1. Find the selected radio button
+            radioButtons.forEach(radio => {
+                if (radio.checked) {
+                    // The item price is stored in the data-price attribute of the radio button
+                    const price = parseFloat(radio.dataset.price);
+                    if (!isNaN(price)) {
+                        selectedPrice = price;
+                        selectedItem = radio;
+                    }
+                }
+            });
+
+            // 2. Calculate the discounted price
+            const discountAmount = selectedPrice * DISCOUNT_RATE;
+            let finalPrice = selectedPrice - discountAmount;
+
+            // Round the final price to 2 decimal places
+            finalPrice = Math.round(finalPrice * 100) / 100;
+            selectedPrice = Math.round(selectedPrice * 100) / 100;
+
+            // 3. Update the display and the hidden input
+            originalPriceElement.textContent = `₹${selectedPrice.toFixed(2)}`;
+            finalPriceElement.textContent = `₹${finalPrice.toFixed(2)}`;
+            offerPriceInput.value = finalPrice; // Set the value for form submission
+
+            // 4. Update visual selection state
+            document.querySelectorAll('.menu-item-radio').forEach(item => {
+                item.classList.remove('selected');
+            });
+
+            if (selectedItem) {
+                selectedItem.closest('.menu-item-radio').classList.add('selected');
+            }
+        }
+
+        // Attach the calculation function to all radio button change events
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', calculatePrices);
+        });
+
+        // Run calculation once on page load
+        calculatePrices();
+    });
+</script>
+</body>
+</html>

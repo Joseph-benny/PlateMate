@@ -1,0 +1,2148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platemate - Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&family=Oswald:wght@600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .tm-bg-brown {
+            background-color: #8B4513;
+        }
+
+        .tm-text-gold {
+            color: #D4AF37;
+        }
+
+        .tm-text-brown {
+            color: #8B4513;
+        }
+
+        .tm-border-gold {
+            border-color: #D4AF37;
+        }
+
+        .tm-bg-green {
+            background-color: #2E8B57;
+        }
+
+        .tm-text-green {
+            color: #2E8B57;
+        }
+
+        .circular-image {
+            border-radius: 50%;
+            object-fit: cover;
+            width: 80px;
+            height: 80px;
+            border: 3px solid #D4AF37;
+        }
+
+        .tm-item-container {
+            color: white;
+        }
+        /* Order Tracking Styles */
+.order-card {
+    transition: all 0.3s ease;
+    border-left-width: 4px;
+}
+
+.order-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.order-card-pending {
+    border-left-color: #f59e0b;
+}
+
+.order-card-ready {
+    border-left-color: #10b981;
+}
+
+.order-card-served {
+    border-left-color: #3b82f6;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-pending {
+    background-color: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fbbf24;
+}
+
+.status-ready {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #10b981;
+}
+
+.status-served {
+    background-color: #dbeafe;
+    color: #1e40af;
+    border: 1px solid #3b82f6;
+}
+
+.progress-bar {
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #e5e7eb;
+}
+
+.progress-fill {
+    height: 100%;
+    transition: width 1s ease-in-out;
+}
+
+.progress-pending {
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+    width: 33%;
+}
+
+.progress-ready {
+    background: linear-gradient(90deg, #10b981, #34d399);
+    width: 66%;
+}
+
+.progress-served {
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    width: 100%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+        .parallax-window {
+            min-height: 100vh;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .logo-font {
+            font-family: 'Oswald', sans-serif;
+        }
+
+    /* Menu Headings Styled as Attractive Buttons */
+.tm-border-gold {
+    border-color: #d4af37 !important;
+}
+
+.menu-heading-btn {
+    display: inline-block;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #ff7b00, #ff5500);
+    color: white;
+    text-align: center;
+    min-width: 180px;
+    margin: 0 8px;
+    text-decoration: none;
+    line-height: 1.2;
+}
+
+.menu-heading-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.menu-heading-btn:hover::before {
+    left: 100%;
+}
+
+.menu-heading-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+.menu-heading-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Individual Button Color Variations */
+.menu-heading-btn.full-menu {
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+    border: 2px solid #E55A2B;
+}
+
+.menu-heading-btn.full-menu:hover {
+    background: linear-gradient(135deg, #E55A2B, #E0821A);
+}
+
+.menu-heading-btn.top-rated {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    border: 2px solid #E6B800;
+    color: #8B4513;
+}
+
+.menu-heading-btn.top-rated:hover {
+    background: linear-gradient(135deg, #E6B800, #E69500);
+    color: #8B4513;
+}
+
+.menu-heading-btn.combo-offers {
+    background: linear-gradient(135deg, #D2691E, #A0522D);
+    border: 2px solid #8B4513;
+    color: #FFEBCD;
+}
+
+.menu-heading-btn.combo-offers:hover {
+    background: linear-gradient(135deg, #B3591B, #8B4513);
+    color: #FFEBCD;
+}
+
+.menu-heading-btn.special-offers {
+    background: linear-gradient(135deg, #FF8C00, #FF6347);
+    border: 2px solid #FF4500;
+    color: white;
+}
+
+.menu-heading-btn.special-offers:hover {
+    background: linear-gradient(135deg, #E67E00, #E0553E);
+    color: white;
+}
+
+/* Active State */
+.menu-heading-btn.active {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    border: 2px solid #FFD700;
+    position: relative;
+}
+
+.menu-heading-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background: #FFD700;
+    border-radius: 2px;
+}
+
+/* Icon Styling */
+.menu-heading-btn i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+/* Container for the buttons */
+.menu-headings-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: linear-gradient(135deg, #FFF8DC, #FFE4B5);
+    border-radius: 15px;
+    margin: 20px 0;
+    border: 2px solid #D2691E;
+}
+
+/* Badge for Special Offers */
+.menu-heading-btn.special-offers {
+    position: relative;
+}
+
+.menu-heading-btn.special-offers::after {
+
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #FF4444;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 10px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-headings-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-heading-btn {
+        min-width: 200px;
+        margin: 5px 0;
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .menu-heading-btn.special-offers::after {
+        top: -5px;
+        right: -5px;
+        font-size: 9px;
+        padding: 2px 6px;
+    }
+}
+
+.py-2{
+    color:black;
+    background: darkorange;
+}
+
+/* Animation for page load */
+@keyframes buttonSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu-heading-btn {
+    animation: buttonSlideIn 0.6s ease-out;
+}
+
+.menu-heading-btn:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.menu-heading-btn:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.menu-heading-btn:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+/* Focus states for accessibility */
+.menu-heading-btn:focus {
+    outline: 3px solid #FFD700;
+    outline-offset: 2px;
+}
+
+/* Loading state */
+.menu-heading-btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.menu-heading-btn.loading::after {
+    content: '...';
+    margin-left: 5px;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0%, 33% { content: '.'; }
+    34%, 66% { content: '..'; }
+    67%, 100% { content: '...'; }
+}
+    </style>
+</head>
+<body class="bg-amber-50">
+    <!-- Intro Section -->
+    <div id="intro" class="parallax-window" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+        <nav class="py-6">
+            <div class="container mx-auto px-4 text-right">
+                <button class="md:hidden py-2 px-2" id="menu-toggle">
+                    <svg class="w-8 h-8 tm-text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <ul class="mb-3 md:mb-0 text-2xl font-normal flex justify-end flex-col md:flex-row">
+                    <li class="inline-block mb-4 mx-4"><a href="#intro" class="tm-text-gold py-1 md:py-3 px-4 hover:text-amber-200 transition">Intro</a></li>
+                    <li class="inline-block mb-4 mx-4"><a href="#menu" class="tm-text-gold py-1 md:py-3 px-4 hover:text-amber-200 transition">Menu</a></li>
+                    <li class="inline-block mb-4 mx-4"><a href="#about" class="tm-text-gold py-1 md:py-3 px-4 hover:text-amber-200 transition">About</a></li>
+                    <li class="inline-block mb-4 mx-4"><a href="#contact" class="tm-text-gold py-1 md:py-3 px-4 hover:text-amber-200 transition">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container mx-auto px-4">
+            <div class="py-48">
+                <div class="text-center">
+                    <div class="inline-block">
+                        <h1 class="text-white text-5xl logo-font mb-5">Welcome to Platemate</h1>
+                    </div>
+                </div>
+                <div class="flex justify-center mt-10">
+                    <a href="#menu" class="flex justify-center items-center bg-black bg-opacity-70 py-6 px-8 rounded-lg font-semibold tm-text-2xl tm-text-gold hover:text-amber-200 transition">
+                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 22V12h6v10"></path>
+                        </svg>
+                        <span>Place Your Order...</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Section -->
+    <div id="menu" class="parallax-window" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+        <div class="container mx-auto py-24">
+            <div class="text-center mb-16">
+                <h2 class="bg-white tm-text-brown py-6 px-12 text-4xl font-medium inline-block rounded-md">Our Cafe Menu</h2>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="flex justify-center mb-12">
+                <form method="post">
+                    {% csrf_token %}
+                <div class="flex" style="max-width: 1000px; width: 100%;">
+                    <input class="flex-grow h-14 px-6 rounded-l-lg border-2 tm-border-gold focus:outline-none focus:ring-2 focus:ring-amber-500" type="search" name="q" placeholder="Search menu items...">
+                    <button name="action" value="search" class="tm-bg-brown text-white px-8 rounded-r-lg hover:bg-amber-900 transition" type="submit">
+                        Search
+                    </button>
+                </div>
+                     </form>
+            </div>
+
+            <!-- Menu Items -->
+            <h1 style="color:brown;font-size:30px"><b>Table: {{num}}</b></h1>
+
+           <div class="flex flex-col lg:flex-row justify-around items-center">
+    <div class="flex-1 m-5 rounded-xl px-4 py-6 sm:px-8 sm:py-10 tm-bg-brown tm-item-container">
+        <div class="overflow-x-auto">
+            <table class="w-full text-white">
+                <thead>
+    <tr>
+        <th colspan="4">
+            <div class="menu-headings-container">
+
+                <a href="/" class="menu-heading-btn full-menu">
+                    <i class="fas fa-utensils"></i> Full Menu
+                </a>
+
+                <a href="/combooffer/" class="menu-heading-btn combo-offers active">
+                    <i class="fas fa-box"></i> Combo Offers
+                </a>
+                <a href="/special_offer/" class="menu-heading-btn special-offers">
+                    <i class="fas fa-percent"></i> Special Offers
+                </a>
+                <button onclick="showOrderTracking()" class="menu-heading-btn" style="background: linear-gradient(135deg, #4F46E5, #7C3AED); border: 2px solid #5B21B6;">
+        <i class="fas fa-clipboard-list"></i>Track Orders
+        {% if pending_count > 0 %}
+        <span style="position: absolute; top: -8px; right: -8px; background: #EF4444; color: white; font-size: 10px; font-weight: bold; padding: 3px 8px; border-radius: 10px; animation: pulse 2s infinite;">
+            {{pending_count}}
+        </span>
+        {% endif %}
+    </button>
+<!-- Filter Button with Simple Dropdown -->
+<div class="relative inline-block">
+    <button class="menu-heading-btn special-offers filter-dropdown-btn">
+        <i class="fas fa-filter"></i> Filter
+        <i class="fas fa-chevron-down ml-2 text-xs transition-transform duration-200"></i>
+    </button>
+
+    <!-- Dropdown Menu -->
+    <div class="filter-dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50 hidden border border-gray-200">
+        <form method="post">
+            {% csrf_token %}
+            <div class="py-2">
+                <button type="submit" name="filter_category" value="all" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    All Items
+                </button>
+                <button type="submit" name="filter_category" value="breakfast" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    Breakfast
+                </button>
+                <button type="submit" name="filter_category" value="lunch" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    Lunch
+                </button>
+                <button type="submit" name="filter_category" value="dinner" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    Dinner
+                </button>
+                <button type="submit" name="filter_category" value="snacks" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    Snacks
+                </button>
+                <button type="submit" name="filter_category" value="beverages" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    Beverages
+                </button>
+                <button type="submit" name="filter_category" value="desserts" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    Desserts
+                </button>
+                <button type="submit" name="filter_category" value="Appetizers" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    Appetizers
+                </button>
+                <button type="submit" name="filter_category" value="desserts" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    Main Course
+                </button>
+                 <button type="submit" name="filter_category" value="drinks" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    Drinks
+                </button>
+                <button type="submit" name="filter_category" value="hot_drinks" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    Hot Drinks
+                </button>
+                <button type="submit" name="filter_category" value="cold_drinks" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    Cold Drinks
+                </button>
+                <button type="submit" name="filter_category" value="Soups" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    Soups
+                </button>
+                <button type="submit" name="filter_category" value="Salads" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    Salads
+                </button>
+                <button type="submit" name="filter_category" value="Sides" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
+                    Side Dishes
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+            </div>
+        </th>
+    </tr>
+</thead>
+                <thead>
+                    <tr class="border-b-2 tm-border-gold">
+                        <th class="py-4 text-left">SL NO:</th>
+                        <th class="py-4 text-left">Item Name</th>
+                         <th class="py-4 text-left">Category</th>
+                        <th class="py-4 text-left">Image</th>
+                        <th class="py-4 text-left">Price</th>
+                        <th class="py-4 text-left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspQuantity</th>
+                    </tr>
+                </thead>
+               <tbody>
+    {% for i in mnu %}
+        <tr class="border-b border-amber-200 hover:bg-amber-900 transition duration-300 group">
+            <th scope="row" class="scope py-4 text-left">{{forloop.counter}}</th>
+            <td class="py-4 font-medium text-lg">{{i.itemname}}</td>
+            <td class="py-4 font-medium text-lg">{{i.category}}</td>
+            <td class="py-4">
+                <!-- Enhanced Image Container -->
+                <div class="relative">
+                    <!-- Main Image with Glow Effect -->
+                    <div class="relative inline-block">
+                        <img
+                            src="{{i.itemimage.url}}"
+                            class="w-20 h-20 rounded-full object-cover border-4 border-amber-300 shadow-lg transform group-hover:scale-110 transition duration-300 cursor-pointer"
+                            alt="{{i.itemname}}"
+                            onclick="openImageModal('{{i.itemimage.url}}', '{{i.itemname}}')"
+                        >
+                        <!-- Floating Glow Effect -->
+                        <div class="absolute inset-0 rounded-full bg-amber-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500"></div>
+
+                        <!-- Quick View Badge -->
+                        <div class="absolute -top-2 -right-2 bg-gradient-to-r from-amber-400 to-amber-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg transform scale-0 group-hover:scale-100 transition-transform duration-300">
+                            👁️ View
+                        </div>
+                    </div>
+
+                    <!-- Hover Preview Card - FIXED POSITIONING -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 -top-48 w-64 bg-white rounded-xl shadow-2xl z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 scale-95 group-hover:scale-100">
+                        <div class="p-1 bg-gradient-to-r from-amber-400 to-amber-600 rounded-xl">
+                            <div class="bg-white rounded-lg overflow-hidden">
+                                <img
+                                    src="{{i.itemimage.url}}"
+                                    class="w-full h-40 object-cover"
+                                    alt="{{i.itemname}}"
+                                >
+                                <div class="p-3">
+                                    <h4 class="font-bold text-gray-800 text-center">{{i.itemname}}</h4>
+                                    <p class="text-amber-600 font-semibold text-center mt-1">Rs: {{i.itemprice}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Arrow pointing down -->
+                        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-4 h-4 bg-white rotate-45"></div>
+                    </div>
+                </div>
+            </td>
+            <td class="py-4 text-xl font-bold tm-text-gold">Rs: {{i.itemprice}}</td>
+            <td class="py-4">
+                <!-- Select/Deselect Button, Quantity Input and Tick Mark Container -->
+                <div class="flex items-center space-x-3">
+                    <!-- Select Button and Quantity Input (Initially Visible) -->
+                    <div class="select-section flex items-center space-x-3">
+                        <!-- Quantity Input with Manual Entry -->
+                        <div class="quantity-control">
+
+                            <div class="flex items-center space-x-1">
+                                <button
+                                    onclick="decreaseQuantity(this)"
+                                    class="w-8 h-8 flex items-center justify-center bg-amber-100 hover:bg-amber-200 border border-amber-300 rounded-lg transition duration-200 text-amber-700 font-bold text-lg"
+                                >
+                                    -
+                                </button>
+                                <input
+                                    type="number"
+                                    value="1"
+                                    min="1"
+                                    max="99"
+                                    class="quantity-input w-16 h-8 text-center border-2 border-amber-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-300 font-bold text-amber-700"
+                                    onchange="validateQuantity(this)"
+                                    oninput="validateQuantity(this)"
+                                >
+                                <button
+                                    onclick="increaseQuantity(this)"
+                                    class="w-8 h-8 flex items-center justify-center bg-amber-100 hover:bg-amber-200 border border-amber-300 rounded-lg transition duration-200 text-amber-700 font-bold text-lg"
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Select Button -->
+                        <button
+                            onclick="selectItem(this, {{i.id}}, '{{i.itemname}}', {{i.itemprice}}, '{{i.itemimage.url}}')"
+                            class="select-btn bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50"
+                        >
+                            Select
+                        </button>
+                    </div>
+
+                    <!-- Selected State with Tick Mark and Deselect (Initially Hidden) -->
+                    <div class="selected-state hidden flex items-center space-x-3">
+                        <!-- Tick Mark -->
+                        <div class="tick-mark">
+                            <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+
+                        <!-- Quantity Display with Edit Option -->
+                        <div class="quantity-display-edit flex items-center space-x-2">
+                            <div class="flex items-center space-x-1 bg-green-50 border border-green-200 rounded-lg px-3 py-1">
+                                <span class="text-green-700 font-semibold quantity-text">Qty: 1</span>
+                            </div>
+                        </div>
+
+                        <!-- Remove Button -->
+                        <button
+                            onclick="removeItem(this, {{i.id}})"
+                            class="remove-btn bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50"
+                        >
+                            Remove
+                        </button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+</tbody>
+
+<!-- Place Order Button -->
+<div class="fixed bottom-6 right-6 z-50">
+    <button
+        id="placeOrderBtn"
+        onclick="showOrderSummary()"
+        class="place-order-btn bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 px-8 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-400 focus:ring-opacity-50 text-lg"
+    >
+        🛒 View Your Order
+    </button>
+</div>
+
+<!-- Order Summary Modal -->
+<!-- Order Summary Modal -->
+<!-- Order Summary Modal - RESPONSIVE -->
+<div id="orderSummaryModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-2 md:p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl h-[95vh] md:h-[90vh] overflow-hidden flex flex-col m-2">
+        <!-- Modal Header - Fixed -->
+        <div class="bg-gradient-to-r from-amber-500 to-amber-600 p-4 md:p-6 shrink-0">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl md:text-2xl font-bold text-white">📋 Your Order</h2>
+                <button onclick="closeOrderSummary()" class="text-white hover:text-amber-200 text-2xl font-bold transition duration-200">
+                    ✕
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal Body - Scrollable -->
+        <div class="flex-1 overflow-y-auto p-3 md:p-6">
+            {% if all_info %}
+
+            <!-- Summary Cards (Mobile Collapsible) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 md:mb-6">
+                <div class="text-center p-3 bg-amber-50 rounded-lg">
+                    <span class="text-xs md:text-sm font-medium text-amber-700">Regular Items</span>
+                    <p class="text-base md:text-lg font-bold text-amber-800">Rs: {{regular_total|floatformat:2}}</p>
+                </div>
+                <div class="text-center p-3 bg-purple-50 rounded-lg">
+                    <span class="text-xs md:text-sm font-medium text-purple-700">Combo Offers</span>
+                    <p class="text-base md:text-lg font-bold text-purple-800">Rs: {{combo_total|floatformat:2}}</p>
+                </div>
+                <div class="text-center p-3 bg-red-50 rounded-lg">
+                    <span class="text-xs md:text-sm font-medium text-red-700">Special Offers</span>
+                    <p class="text-base md:text-lg font-bold text-red-800">Rs: {{special_total|floatformat:2}}</p>
+                </div>
+            </div>
+
+            <!-- Regular Items Section -->
+            {% if regular_info %}
+            <div class="mb-4 md:mb-6">
+                <h3 class="text-base md:text-lg font-bold text-amber-800 mb-2 md:mb-3 pb-2 border-b border-amber-200">🍽️ Regular Items</h3>
+                <div class="space-y-2 md:space-y-3">
+                    {% for i in regular_info %}
+                    <div class="flex flex-col md:flex-row md:items-center justify-between p-3 md:p-4 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-200">
+                        <div class="flex items-center space-x-3 md:space-x-4 mb-2 md:mb-0 flex-1">
+                            <img src="{{i.item.item.itemimage.url}}" alt="{{i.item.item.itemname}}" class="w-12 h-12 md:w-16 md:h-16 rounded-lg object-cover border-2 border-amber-300">
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-800 text-sm md:text-base">{{i.item.item.itemname}}</h4>
+                                <p class="text-amber-600 font-bold text-xs md:text-sm">Rs: {{i.item.item.itemprice}} each</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between md:justify-end space-x-3 md:space-x-4 w-full md:w-auto">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-8 md:w-12 text-center font-semibold text-gray-700 text-sm md:text-base">{{i.item.quantity}}</span>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-green-600 text-sm md:text-base">Rs: {{i.price}}</p>
+                            </div>
+                            <button onclick="window.location.href='/delete_cart/{{i.item.id}}/?type=regular'" class="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-red-100 hover:bg-red-200 border border-red-300 rounded-lg transition duration-200 text-red-600 font-bold text-xs" title="Remove Item">
+                                🗑️
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Combo Offers Section -->
+            {% if combo_info %}
+            <div class="mb-4 md:mb-6">
+                <h3 class="text-base md:text-lg font-bold text-purple-800 mb-2 md:mb-3 pb-2 border-b border-purple-200">🎁 Combo Offers</h3>
+                <div class="space-y-2 md:space-y-3">
+                    {% for i in combo_info %}
+                    <div class="flex flex-col md:flex-row md:items-center justify-between p-3 md:p-4 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-200">
+                        <div class="flex items-center space-x-3 md:space-x-4 mb-2 md:mb-0 flex-1">
+                            {% if i.item.item.image %}
+                            <img src="{{i.item.item.image.url}}" alt="{{i.item.item.combo_name}}" class="w-12 h-12 md:w-16 md:h-16 rounded-lg object-cover border-2 border-purple-300">
+                            {% else %}
+                            <div class="w-12 h-12 md:w-16 md:h-16 rounded-lg border-2 border-purple-300 bg-purple-100 flex items-center justify-center">
+                                <span class="text-purple-500 text-xl md:text-2xl">🎁</span>
+                            </div>
+                            {% endif %}
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-800 text-sm md:text-base">{{i.item.item.combo_name}}</h4>
+                                <p class="text-purple-600 font-bold text-xs md:text-sm">Rs: {{i.item.item.combo_price}} each</p>
+                                <p class="text-xs text-gray-500 mt-1 hidden md:block">
+                                    Includes:
+                                    {% for menu_item in i.item.item.items.all %}
+                                        {{ menu_item.itemname }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between md:justify-end space-x-3 md:space-x-4 w-full md:w-auto">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-8 md:w-12 text-center font-semibold text-gray-700 text-sm md:text-base">{{i.item.quantity}}</span>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-green-600 text-sm md:text-base">Rs: {{i.price}}</p>
+                            </div>
+                            <button onclick="window.location.href='/delete_combo_cart/{{i.item.id}}/'" class="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-red-100 hover:bg-red-200 border border-red-300 rounded-lg transition duration-200 text-red-600 font-bold text-xs" title="Remove Item">
+                                🗑️
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Special Offers Section -->
+            {% if special_info %}
+            <div class="mb-4 md:mb-6">
+                <h3 class="text-base md:text-lg font-bold text-red-800 mb-2 md:mb-3 pb-2 border-b border-red-200">🔥 Special Offers</h3>
+                <div class="space-y-2 md:space-y-3">
+                    {% for i in special_info %}
+                    <div class="flex flex-col md:flex-row md:items-center justify-between p-3 md:p-4 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-200">
+                        <div class="flex items-center space-x-3 md:space-x-4 mb-2 md:mb-0 flex-1">
+                            <div class="w-12 h-12 md:w-16 md:h-16 rounded-lg border-2 border-red-300 bg-red-100 flex items-center justify-center">
+                                <span class="text-red-500 text-xl md:text-2xl">🔥</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-800 text-sm md:text-base">{{i.item.item.offer_name}}</h4>
+                                <p class="text-red-600 font-bold text-xs md:text-sm">Rs: {{i.item.item.offer_price}} each</p>
+                                {% if i.item.item.items %}
+                                <p class="text-xs text-gray-500 mt-1 hidden md:block">
+                                    Includes: {{i.item.item.items.itemname}}
+                                </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between md:justify-end space-x-3 md:space-x-4 w-full md:w-auto">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-8 md:w-12 text-center font-semibold text-gray-700 text-sm md:text-base">{{i.item.quantity}}</span>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-green-600 text-sm md:text-base">Rs: {{i.price}}</p>
+                            </div>
+                            <button onclick="window.location.href='/delete_special_cart/{{i.item.id}}/'" class="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-red-100 hover:bg-red-200 border border-red-300 rounded-lg transition duration-200 text-red-600 font-bold text-xs" title="Remove Item">
+                                🗑️
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% else %}
+            <div class="text-center py-8 h-full flex flex-col items-center justify-center">
+                <div class="text-6xl mb-4">🛒</div>
+                <h3 class="text-xl font-semibold text-gray-600">No items selected</h3>
+                <p class="text-gray-500">Please select some items to place your order</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Modal Footer - Fixed at Bottom -->
+        <div class="border-t border-gray-200 p-3 md:p-6 bg-gray-50 shrink-0">
+            <!-- Total Summary -->
+            <div class="flex justify-between items-center mb-3 md:mb-4">
+                <div>
+                    <span class="text-sm md:text-lg font-semibold text-gray-700">Total Items:</span>
+                    <span class="text-sm md:text-lg font-bold text-amber-600 ml-2">{{total_items_count}}</span>
+                </div>
+                <div>
+                    <span class="text-base md:text-xl font-bold text-gray-800">Grand Total:</span>
+                    <span class="text-lg md:text-2xl font-bold text-green-600 ml-2">Rs: {{grand_total|floatformat:2}}</span>
+                </div>
+            </div>
+
+            <!-- Main Action Buttons -->
+            <div class="space-y-3 md:space-y-4">
+                <!-- Place Order Button -->
+                {% if all_info %}
+                <button
+                    onclick="window.location.href='/make_order/'"
+                    class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-3 md:py-4 px-4 md:px-6 rounded-xl transition duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl flex items-center justify-center text-base md:text-lg"
+                >
+                    <svg class="w-5 h-5 md:w-6 md:h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    🚀 PLACE ORDER
+                </button>
+                {% endif %}
+
+                <!-- Secondary Buttons -->
+                <!-- Quick Action Links -->
+                {% if all_info %}
+                <div class="pt-3 md:pt-4 border-t border-gray-300">
+                    <div class="grid grid-cols-2 gap-2">
+                        <a href="/combooffer/"
+                           class="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-2 px-3 rounded-lg transition duration-300 text-center flex items-center justify-center text-xs md:text-sm">
+                            <span class="mr-1 md:mr-2">🎁</span>
+                            Add Combo
+                        </a>
+                        <a href="/special_offer/"
+                           class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-2 px-3 rounded-lg transition duration-300 text-center flex items-center justify-center text-xs md:text-sm">
+                            <span class="mr-1 md:mr-2">🔥</span>
+                            Add Special
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+                <!-- Order Tracking Modal -->
+<!-- Order Tracking Modal - UPDATED VERSION -->
+<div id="orderTrackingModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-2 md:p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl h-[95vh] md:h-[90vh] overflow-hidden flex flex-col m-2">
+        <!-- Modal Header -->
+        <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-4 md:p-6 shrink-0">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-xl md:text-2xl font-bold text-white">📋 Current Orders - Table {{num}}</h2>
+                    <p class="text-white text-opacity-90 text-sm mt-1">Track your order status in real-time</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="refreshOrders()" class="text-white hover:text-purple-200 p-2 rounded-full hover:bg-white hover:bg-opacity-20 transition duration-200" title="Refresh">
+                        <i class="fas fa-redo-alt"></i>
+                    </button>
+                    <button onclick="closeOrderTracking()" class="text-white hover:text-purple-200 text-2xl font-bold transition duration-200">
+                        ✕
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Status Summary -->
+        <div class="bg-gray-50 p-4 border-b">
+            <div class="grid grid-cols-3 gap-2 md:gap-4">
+                <div class="text-center p-3 bg-amber-100 rounded-lg">
+                    <div class="text-amber-800 font-bold text-lg">{{pending_count}}</div>
+                    <div class="text-amber-600 text-sm">Pending</div>
+                </div>
+                <div class="text-center p-3 bg-green-100 rounded-lg">
+                    <div class="text-green-800 font-bold text-lg">{{ready_count}}</div>
+                    <div class="text-green-600 text-sm">Ready</div>
+                </div>
+                <div class="text-center p-3 bg-blue-100 rounded-lg">
+                    <div class="text-blue-800 font-bold text-lg">{{served_count}}</div>
+                    <div class="text-blue-600 text-sm">Served</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Body - Scrollable -->
+        <div class="flex-1 overflow-y-auto p-3 md:p-6">
+            <!-- Pending Orders -->
+            {% if pending_orders %}
+            <div class="mb-6">
+                <div class="flex items-center mb-3">
+                    <div class="w-3 h-3 bg-amber-500 rounded-full mr-2 animate-pulse"></div>
+                    <h3 class="text-lg font-bold text-amber-700">⏳ Pending Orders</h3>
+                    <span class="ml-2 bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-1 rounded-full">
+                        {{pending_count}} items
+                    </span>
+                </div>
+                <div class="space-y-3">
+                    {% for order in pending_orders %}
+                    <div class="order-card order-card-pending bg-white border border-amber-200 rounded-xl p-4 animate-fadeIn">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center mb-2">
+                                    {% if order.combo %}
+                                    <span class="text-purple-500 mr-2">🎁</span>
+                                    <h4 class="font-bold text-gray-800">{{order.combo.combo_name}}</h4>
+                                    {% elif order.special_offer %}
+                                    <span class="text-red-500 mr-2">🔥</span>
+                                    <h4 class="font-bold text-gray-800">{{order.special_offer.offer_name}}</h4>
+                                    {% else %}
+                                    <span class="text-amber-500 mr-2">🍽️</span>
+                                    <h4 class="font-bold text-gray-800">{{order.item.itemname}}</h4>
+                                    {% endif %}
+                                    <span class="status-badge status-pending ml-2">Pending</span>
+                                </div>
+
+                                <div class="flex items-center text-sm text-gray-600 mb-3">
+                                    <span class="mr-4">Qty: <strong>{{order.quantity}}</strong></span>
+                                    <span>Table: <strong>{{order.table}}</strong></span>
+                                </div>
+
+                                <!-- Progress bar -->
+                                <div class="mb-2">
+                                    <div class="text-xs text-gray-500 mb-1">Preparing your order...</div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill progress-pending"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-right">
+                                <div class="font-bold text-green-600 text-lg">
+                                    Rs:
+                                    {% if order.combo %}
+                                        {{order.combo.combo_price|floatformat:2}}
+                                    {% elif order.special_offer %}
+                                        {{order.special_offer.offer_price|floatformat:2}}
+                                    {% else %}
+                                        {{order.item.itemprice|floatformat:2}}
+                                    {% endif %}
+                                </div>
+                                <div class="text-xs text-gray-500 mt-1">
+                                    {{order.quantity}} ×
+                                    {% if order.combo %}
+                                        {{order.combo.combo_price|floatformat:2}}
+                                    {% elif order.special_offer %}
+                                        {{order.special_offer.offer_price|floatformat:2}}
+                                    {% else %}
+                                        {{order.item.itemprice|floatformat:2}}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Ready Orders -->
+            {% if ready_orders %}
+            <div class="mb-6">
+                <div class="flex items-center mb-3">
+                    <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                    <h3 class="text-lg font-bold text-green-700">✅ Ready for Pickup</h3>
+                    <span class="ml-2 bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded-full">
+                        {{ready_count}} items
+                    </span>
+                </div>
+                <div class="space-y-3">
+                    {% for order in ready_orders %}
+                    <div class="order-card order-card-ready bg-white border border-green-200 rounded-xl p-4 animate-fadeIn" style="animation-delay: 0.1s">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center mb-2">
+                                    {% if order.combo %}
+                                    <span class="text-purple-500 mr-2">🎁</span>
+                                    <h4 class="font-bold text-gray-800">{{order.combo.combo_name}}</h4>
+                                    {% elif order.special_offer %}
+                                    <span class="text-red-500 mr-2">🔥</span>
+                                    <h4 class="font-bold text-gray-800">{{order.special_offer.offer_name}}</h4>
+                                    {% else %}
+                                    <span class="text-green-500 mr-2">🍽️</span>
+                                    <h4 class="font-bold text-gray-800">{{order.item.itemname}}</h4>
+                                    {% endif %}
+                                    <span class="status-badge status-ready ml-2">Ready</span>
+                                </div>
+
+                                <div class="flex items-center text-sm text-gray-600 mb-3">
+                                    <span class="mr-4">Qty: <strong>{{order.quantity}}</strong></span>
+                                    <span>Table: <strong>{{order.table}}</strong></span>
+                                </div>
+
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-3">
+                                    <div class="flex items-center text-green-700">
+                                        <i class="fas fa-bell text-green-500 mr-2"></i>
+                                        <span class="font-semibold">Your order is ready! Please collect from the counter.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-right">
+                                <div class="font-bold text-green-600 text-lg">
+                                    Rs:
+                                    {% if order.combo %}
+                                        {{order.combo.combo_price|floatformat:2}}
+                                    {% elif order.special_offer %}
+                                        {{order.special_offer.offer_price|floatformat:2}}
+                                    {% else %}
+                                        {{order.item.itemprice|floatformat:2}}
+                                    {% endif %}
+                                </div>
+                                <button onclick="markAsServed({{order.id}})" class="mt-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition duration-200">
+                                    Mark as Served
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Served Orders -->
+            {% if served_orders %}
+            <div class="mb-6">
+                <div class="flex items-center mb-3">
+                    <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                    <h3 class="text-lg font-bold text-blue-700">🍽️ Served Orders</h3>
+                    <span class="ml-2 bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded-full">
+                        {{served_count}} items
+                    </span>
+                </div>
+                <div class="space-y-3">
+                    {% for order in served_orders %}
+                    <div class="order-card order-card-served bg-white border border-blue-200 rounded-xl p-4 animate-fadeIn" style="animation-delay: 0.2s">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center mb-2">
+                                    {% if order.combo %}
+                                    <span class="text-purple-500 mr-2">🎁</span>
+                                    <h4 class="font-bold text-gray-800">{{order.combo.combo_name}}</h4>
+                                    {% elif order.special_offer %}
+                                    <span class="text-red-500 mr-2">🔥</span>
+                                    <h4 class="font-bold text-gray-800">{{order.special_offer.offer_name}}</h4>
+                                    {% else %}
+                                    <span class="text-blue-500 mr-2">🍽️</span>
+                                    <h4 class="font-bold text-gray-800">{{order.item.itemname}}</h4>
+                                    {% endif %}
+                                    <span class="status-badge status-served ml-2">Served</span>
+                                </div>
+
+                                <div class="flex items-center text-sm text-gray-600 mb-2">
+                                    <span class="mr-4">Qty: <strong>{{order.quantity}}</strong></span>
+                                    <span>Table: <strong>{{order.table}}</strong></span>
+                                </div>
+
+                                <div class="text-xs text-gray-500">
+                                    <i class="far fa-clock mr-1"></i> Order completed
+                                </div>
+                            </div>
+
+                            <div class="text-right">
+                                <div class="font-bold text-green-600 text-lg">
+                                    Rs:
+                                    {% if order.combo %}
+                                        {{order.combo.combo_price|floatformat:2}}
+                                    {% elif order.special_offer %}
+                                        {{order.special_offer.offer_price|floatformat:2}}
+                                    {% else %}
+                                        {{order.item.itemprice|floatformat:2}}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- No Orders Message -->
+            {% if not current_orders %}
+            <div class="text-center py-12">
+                <div class="text-6xl mb-4">📭</div>
+                <h3 class="text-xl font-semibold text-gray-600">No orders placed yet</h3>
+                <p class="text-gray-500">Place an order from the menu to see it here</p>
+                <button onclick="closeOrderTracking()" class="mt-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300">
+                    Browse Menu
+                </button>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Modal Footer - UPDATED WITH PAYMENT BUTTONS -->
+        <div class="border-t border-gray-200 p-4 bg-gray-50 shrink-0">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <div class="text-sm text-gray-600">Total Orders:</div>
+                    <div class="font-bold text-gray-800">{{current_orders.count}}</div>
+                </div>
+                <div class="text-right">
+                    <div class="text-sm text-gray-600">Total Amount:</div>
+                    <div class="font-bold text-green-600 text-xl">Rs: {{order_total|floatformat:2}}</div>
+                </div>
+            </div>
+
+            <!-- Payment Section -->
+            {% if current_orders %}
+            <div class="mt-4 border-t border-gray-300 pt-4">
+                    <!-- Payment Button -->
+                    {% if served_orders %}
+                    <button onclick="window.location.href='/payment/'"
+                            class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-[1.02] flex items-center justify-center">
+                        <i class="fas fa-credit-card mr-2"></i>
+                        Proceed to Payment
+                    </button>
+                    {% endif %}
+                </div>
+
+                <!-- Quick Payment Options -->
+            </div>
+            {% endif %}
+
+            <!-- Order Status Info -->
+            {% if pending_count > 0 %}
+            <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3">
+                <div class="flex items-center">
+                    <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                    <span class="text-blue-700 text-sm">Your orders are being prepared. Estimated time: 15-20 minutes</span>
+                </div>
+            </div>
+            {% elif served_count > 0 and served_count == current_orders.count %}
+            <div class="mt-4 bg-green-50 border border-green-200 rounded-lg p-3">
+                <div class="flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                    <span class="text-green-700 text-sm">All orders have been served! Ready for payment.</span>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- Order Confirmation Page -->
+<div id="orderConfirmationPage" class="fixed inset-0 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 z-50 hidden overflow-y-auto">
+    <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="max-w-2xl w-full">
+            <!-- Animated Success Container -->
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-1000 scale-95 animate-scaleIn">
+                <!-- Header with Gradient -->
+                <div class="bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 p-8 text-center relative overflow-hidden">
+                    <!-- Animated Background Elements -->
+                    <div class="absolute top-0 left-0 w-full h-full">
+                        <div class="absolute top-4 left-10 w-8 h-8 bg-white bg-opacity-20 rounded-full animate-float"></div>
+                        <div class="absolute top-12 right-16 w-6 h-6 bg-white bg-opacity-20 rounded-full animate-float delay-300"></div>
+                        <div class="absolute bottom-8 left-20 w-10 h-10 bg-white bg-opacity-15 rounded-full animate-float delay-700"></div>
+                    </div>
+
+                    <!-- Success Icon -->
+                    <div class="relative z-10">
+                        <div class="w-32 h-32 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounceIn">
+                            <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg">
+                                <svg class="w-16 h-16 text-green-500 animate-checkmark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <h1 class="text-4xl font-bold text-white mb-2 animate-fadeInUp">Order Confirmed! 🎉</h1>
+                        <p class="text-white text-opacity-90 text-lg animate-fadeInUp delay-300">Thank you for your order</p>
+                    </div>
+                </div>
+
+                <!-- Order Details -->
+                <div class="p-8 space-y-6">
+                    <!-- Order Message -->
+                    <div class="text-center animate-fadeInUp delay-500">
+                        <div class="text-6xl mb-4">🍽️</div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Your order has been placed successfully!</h2>
+                        <p class="text-gray-600 text-lg">It will be ready for pickup shortly</p>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <!-- Order Confirmation Page - Update the order summary section -->
+<div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 animate-fadeInUp delay-700">
+    <h3 class="text-xl font-bold text-amber-800 mb-4 text-center">📦 Order Details</h3>
+
+    <!-- Regular Items -->
+    {% if regular_info %}
+    <div class="mb-4">
+        <h4 class="font-semibold text-amber-700 mb-2">Regular Items:</h4>
+        {% for i in regular_info %}
+        <div class="flex justify-between items-center py-2 border-b border-amber-100">
+            <div class="flex items-center space-x-3">
+                <img src="{{i.item.item.itemimage.url}}" alt="{{i.item.item.itemname}}" class="w-10 h-10 rounded-lg object-cover border border-amber-200">
+                <div>
+                    <h5 class="font-semibold text-gray-800">{{i.item.item.itemname}}</h5>
+                    <p class="text-sm text-gray-600">Qty: {{i.item.quantity}} × Rs: {{i.item.item.itemprice}}</p>
+                </div>
+            </div>
+            <span class="font-bold text-green-600">Rs: {{i.price|floatformat:2}}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Combo Offers -->
+    {% if combo_info %}
+    <div class="mb-4">
+        <h4 class="font-semibold text-purple-700 mb-2">Combo Offers:</h4>
+        {% for i in combo_info %}
+        <div class="flex justify-between items-center py-2 border-b border-amber-100">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg border border-purple-200 bg-purple-100 flex items-center justify-center">
+                    <span class="text-purple-500">🎁</span>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-800">{{i.item.item.combo_name}}</h5>
+                    <p class="text-sm text-gray-600">Qty: {{i.item.quantity}} × Rs: {{i.item.item.combo_price}}</p>
+                </div>
+            </div>
+            <span class="font-bold text-green-600">Rs: {{i.price|floatformat:2}}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Special Offers -->
+    {% if special_info %}
+    <div class="mb-4">
+        <h4 class="font-semibold text-red-700 mb-2">Special Offers:</h4>
+        {% for i in special_info %}
+        <div class="flex justify-between items-center py-2 border-b border-amber-100">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg border border-red-200 bg-red-100 flex items-center justify-center">
+                    <span class="text-red-500">🔥</span>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-800">{{i.item.item.offer_name}}</h5>
+                    <p class="text-sm text-gray-600">Qty: {{i.item.quantity}} × Rs: {{i.item.item.offer_price}}</p>
+                </div>
+            </div>
+            <span class="font-bold text-green-600">Rs: {{i.price|floatformat:2}}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="border-t border-amber-200 pt-4">
+        <div class="flex justify-between items-center text-lg">
+            <span class="font-semibold text-amber-800">Total Amount:</span>
+            <span id="confirmationTotal" class="font-bold text-green-600 text-xl">Rs: {{grand_total|floatformat:2}}</span>
+        </div>
+    </div>
+</div>
+
+                    <!-- Estimated Time -->
+                    <div class="flex items-center justify-center space-x-4 bg-blue-50 border border-blue-200 rounded-2xl p-6 animate-fadeInUp delay-900">
+                        <div class="text-4xl">⏰</div>
+                        <div>
+                            <h4 class="font-bold text-blue-800 text-lg">Estimated Ready Time</h4>
+                            <p class="text-blue-600" id="estimatedTime">15-20 minutes</p>
+                        </div>
+                    </div>
+
+                    <!-- Order Number -->
+                    <div class="text-center animate-fadeInUp delay-1000">
+                        <p class="text-gray-600 mb-2">Your order number is</p>
+                        <div class="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg font-mono text-xl font-bold">
+                            #<span id="orderNumber">0000</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 pt-6 animate-fadeInUp delay-1100">
+                        <button
+                            onclick=""
+                            class="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 px-6 rounded-xl transition duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+                        >
+
+                            <span>Payment</span>
+                        </button>
+                        <button
+                            onclick="newOrder()"
+                            class="flex-1 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold py-4 px-6 rounded-xl transition duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+                        >
+                            <span>🔄</span>
+                            <span>New Order</span>
+                        </button>
+                    </div>
+
+                    <!-- Thank You Message -->
+                    <div class="text-center pt-6 animate-fadeInUp delay-1200">
+                        <p class="text-gray-500 italic">We appreciate your business! 💝</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Store selected items with quantity
+let selectedItems = [];
+
+// Quantity control functions
+function increaseQuantity(button) {
+    const container = button.parentElement;
+    const input = container.querySelector('.quantity-input');
+    const currentValue = parseInt(input.value);
+    if (currentValue < 99) {
+        input.value = currentValue + 1;
+    }
+}
+
+function decreaseQuantity(button) {
+    const container = button.parentElement;
+    const input = container.querySelector('.quantity-input');
+    const currentValue = parseInt(input.value);
+    if (currentValue > 1) {
+        input.value = currentValue - 1;
+    }
+}
+
+function validateQuantity(input) {
+    let value = parseInt(input.value);
+    if (isNaN(value) || value < 1) {
+        input.value = 1;
+    } else if (value > 99) {
+        input.value = 99;
+    }
+}
+
+function selectItem(button, itemId, itemName, itemPrice, itemImage) {
+    // Find the parent container
+    const container = button.parentElement.parentElement;
+
+    // Find the select section and selected state container
+    const selectSection = container.querySelector('.select-section');
+    const selectedState = container.querySelector('.selected-state');
+
+    // Get the quantity input and value
+    const quantityInput = selectSection.querySelector('.quantity-input');
+    const quantity = parseInt(quantityInput.value);
+
+    // Get quantity display element
+    const quantityDisplay = selectedState.querySelector('.quantity-text');
+
+    // Update quantity display
+    quantityDisplay.textContent = `Qty: ${quantity}`;
+
+    // Hide the select section and show the selected state
+    selectSection.classList.add('hidden');
+    selectedState.classList.remove('hidden');
+
+    // Add animation to the tick mark
+    const tickMark = selectedState.querySelector('.tick-mark');
+    tickMark.classList.add('animate-bounce');
+    setTimeout(() => {
+        tickMark.classList.remove('animate-bounce');
+    }, 1000);
+
+    // Add item to selected items array with quantity
+    const existingItemIndex = selectedItems.findIndex(item => item.id === itemId);
+
+    if (existingItemIndex > -1) {
+        // Update existing item quantity
+        selectedItems[existingItemIndex].quantity = quantity;
+    } else {
+        // Add new item
+        selectedItems.push({
+            id: itemId,
+            name: itemName,
+            price: parseFloat(itemPrice),
+            quantity: quantity,
+            image: itemImage
+        });
+    }
+
+    console.log(`Item ${itemId} selected with quantity ${quantity}`);
+    window.location.href=`/add_to_cart/${itemId}/${quantity}/`;
+    updateSelectedSummary();
+}
+
+function removeItem(button, itemId) {
+    // Find the parent container
+    const container = button.parentElement.parentElement;
+
+    // Find the select section and selected state container
+    const selectSection = container.querySelector('.select-section');
+    const selectedState = container.querySelector('.selected-state');
+
+    // Reset quantity to 1
+    const quantityInput = selectSection.querySelector('.quantity-input');
+    quantityInput.value = 1;
+
+    // Hide the selected state and show the select section
+    selectedState.classList.add('hidden');
+    selectSection.classList.remove('hidden');
+
+    // Remove item from selected items array
+    selectedItems = selectedItems.filter(item => item.id !== itemId);
+
+    console.log(`Item ${itemId} removed`);
+    updateSelectedSummary();
+}
+
+function updateSelectedSummary() {
+    // Update counter display
+    const countElement = document.getElementById('selectedCount');
+    const totalElement = document.getElementById('selectedTotal');
+    const counterElement = document.getElementById('selectedCounter');
+    const placeOrderBtn = document.getElementById('placeOrderBtn');
+
+    const totalItems = selectedItems.reduce((sum, item) => sum + item.quantity, 0);
+    const totalPrice = selectedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+    if (countElement) {
+        countElement.textContent = totalItems;
+    }
+
+    if (totalElement) {
+        totalElement.textContent = `Rs: ${totalPrice.toFixed(2)}`;
+    }
+
+    if (counterElement) {
+        if (selectedItems.length > 0) {
+            counterElement.classList.remove('hidden');
+        } else {
+            counterElement.classList.add('hidden');
+        }
+    }
+
+    // Show/hide place order button
+    if (placeOrderBtn) {
+        if (selectedItems.length > 0) {
+            placeOrderBtn.classList.remove('hidden');
+        } else {
+            placeOrderBtn.classList.add('hidden');
+        }
+    }
+}
+
+function showOrderSummary() {
+    const modal = document.getElementById('orderSummaryModal');
+
+    const modalTotalItems = document.getElementById('modalTotalItems');
+    const modalGrandTotal = document.getElementById('modalGrandTotal');
+
+    if (selectedItems.length === 0) {
+    } else {
+        confirmOrderBtn.classList.remove('hidden');
+
+        // Populate order items
+        selectedItems.forEach((item, index) => {
+            const itemTotal = item.price * item.quantity;
+            const orderItemElement = document.createElement('div');
+            orderItemElement.className = 'flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-200';
+            orderItemElement.innerHTML = `
+                <div class="flex items-center space-x-4 flex-1">
+                    <img src="${item.itemimage}" alt="${item.itemname}" class="w-16 h-16 rounded-lg object-cover border-2 border-amber-300">
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-gray-800">${item.name}</h4>
+                        <p class="text-amber-600 font-bold">Rs: ${item.price.toFixed(2)} each</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Quantity Controls -->
+                    <div class="flex items-center space-x-2">
+                        <button
+                            onclick="decreaseOrderQuantity(${index})"
+                            class="w-8 h-8 flex items-center justify-center bg-amber-100 hover:bg-amber-200 border border-amber-300 rounded-lg transition duration-200 text-amber-700 font-bold"
+                        >
+                            -
+                        </button>
+                        <span class="w-12 text-center font-semibold text-gray-700">${item.quantity}</span>
+                        <button
+                            onclick="increaseOrderQuantity(${index})"
+                            class="w-8 h-8 flex items-center justify-center bg-amber-100 hover:bg-amber-200 border border-amber-300 rounded-lg transition duration-200 text-amber-700 font-bold"
+                        >
+                            +
+                        </button>
+                    </div>
+
+                    <!-- Item Total -->
+                    <div class="text-right min-w-24">
+                        <p class="font-bold text-green-600">Rs: ${itemTotal.toFixed(2)}</p>
+                    </div>
+
+                    <!-- Remove Button -->
+                    <button
+                        onclick="removeOrderItem(${index})"
+                        class="w-10 h-10 flex items-center justify-center bg-red-100 hover:bg-red-200 border border-red-300 rounded-lg transition duration-200 text-red-600 font-bold"
+                        title="Remove Item"
+                    >
+                        🗑️
+                    </button>
+                </div>
+            `;
+        });
+
+        // Update totals
+        const totalItems = selectedItems.reduce((sum, item) => sum + item.quantity, 0);
+        const grandTotal = selectedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+        modalTotalItems.textContent = totalItems;
+        modalGrandTotal.textContent = `Rs: ${grandTotal.toFixed(2)}`;
+    }
+
+    modal.classList.remove('hidden');
+}
+
+function closeOrderSummary() {
+    const modal = document.getElementById('orderSummaryModal');
+    modal.classList.add('hidden');
+}
+
+function increaseOrderQuantity(index) {
+    if (selectedItems[index].quantity < 99) {
+        selectedItems[index].quantity++;
+        updateOrderSummaryDisplay();
+    }
+}
+
+function decreaseOrderQuantity(index) {
+    if (selectedItems[index].quantity > 1) {
+        selectedItems[index].quantity--;
+        updateOrderSummaryDisplay();
+    }
+}
+
+function removeOrderItem(index) {
+    selectedItems.splice(index, 1);
+    updateOrderSummaryDisplay();
+    updateSelectedSummary();
+
+    // If no items left, close modal
+    if (selectedItems.length === 0) {
+        closeOrderSummary();
+    }
+}
+
+function updateOrderSummaryDisplay() {
+    // Refresh the order summary display
+    showOrderSummary();
+}
+
+function confirmOrder() {
+
+
+    // Close order summary modal
+    closeOrderSummary();
+
+    // Show confirmation page
+    showOrderConfirmation();
+}
+
+function showOrderConfirmation() {
+    const confirmationPage = document.getElementById('orderConfirmationPage');
+    const confirmationItems = document.getElementById('confirmationOrderItems');
+    const confirmationTotal = document.getElementById('confirmationTotal');
+    const orderNumber = document.getElementById('orderNumber');
+    const estimatedTime = document.getElementById('estimatedTime');
+
+    // Generate random order number
+    const randomOrderNumber = Math.floor(1000 + Math.random() * 9000);
+    orderNumber.textContent = randomOrderNumber;
+
+    // Calculate estimated time based on total items
+    const totalItems = selectedItems.reduce((sum, item) => sum + item.quantity, 0);
+    const baseTime = 10; // 10 minutes base
+    const additionalTime = Math.ceil(totalItems / 2); // 0.5 minutes per item
+    const totalTime = baseTime + additionalTime;
+    estimatedTime.textContent = `${totalTime}-${totalTime + 5} minutes`;
+
+    // Populate order items
+    confirmationItems.innerHTML = '';
+    selectedItems.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        const itemElement = document.createElement('div');
+        itemElement.className = 'flex justify-between items-center py-2 border-b border-amber-100 last:border-b-0';
+        itemElement.innerHTML = `
+            <div class="flex items-center space-x-3">
+                <img src="${item.itemimage}" alt="${item.name}" class="w-12 h-12 rounded-lg object-cover border border-amber-200">
+                <div>
+                    <h5 class="font-semibold text-gray-800">${item.name}</h5>
+                    <p class="text-sm text-gray-600">Qty: ${item.quantity} × Rs: ${item.price.toFixed(2)}</p>
+                </div>
+            </div>
+            <span class="font-bold text-green-600">Rs: ${itemTotal.toFixed(2)}</span>
+        `;
+        confirmationItems.appendChild(itemElement);
+    });
+
+    // Calculate and display total
+    const grandTotal = selectedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    confirmationTotal.textContent = `Rs: ${grandTotal.toFixed(2)}`;
+
+    // Show confirmation page
+    confirmationPage.classList.remove('hidden');
+
+    // Here you can send the order to your server
+    // fetch('/submit-order', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({
+    //         orderNumber: randomOrderNumber,
+    //         items: selectedItems,
+    //         total: grandTotal,
+    //         timestamp: new Date().toISOString()
+    //     })
+    // });
+}
+
+function printOrder() {
+    window.print();
+}
+
+function newOrder() {
+    // Hide confirmation page
+    const confirmationPage = document.getElementById('orderConfirmationPage');
+    confirmationPage.classList.add('hidden');
+
+    // Reset everything
+    resetAllSelections();
+}
+
+function resetAllSelections() {
+    const selectSections = document.querySelectorAll('.select-section');
+    const selectedStates = document.querySelectorAll('.selected-state');
+    const quantityInputs = document.querySelectorAll('.quantity-input');
+
+    selectSections.forEach(section => {
+        section.classList.remove('hidden');
+    });
+
+    selectedStates.forEach(state => {
+        state.classList.add('hidden');
+    });
+
+    quantityInputs.forEach(input => {
+        input.value = 1;
+    });
+
+    selectedItems = [];
+    updateSelectedSummary();
+}
+
+// Simple filter dropdown functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const filterBtn = document.querySelector('.filter-dropdown-btn');
+    const filterMenu = document.querySelector('.filter-dropdown-menu');
+
+    if (filterBtn && filterMenu) {
+        // Toggle dropdown on button click
+        filterBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            filterMenu.classList.toggle('hidden');
+
+            // Rotate chevron
+            const chevron = this.querySelector('.fa-chevron-down');
+            if (chevron) {
+                chevron.classList.toggle('rotate-180');
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (filterMenu && !filterMenu.contains(e.target) && !filterBtn.contains(e.target)) {
+                filterMenu.classList.add('hidden');
+                const chevron = filterBtn.querySelector('.fa-chevron-down');
+                if (chevron) {
+                    chevron.classList.remove('rotate-180');
+                }
+            }
+        });
+
+        // Close dropdown when clicking inside (for form submission)
+        filterMenu.addEventListener('click', function() {
+            setTimeout(() => {
+                filterMenu.classList.add('hidden');
+                const chevron = filterBtn.querySelector('.fa-chevron-down');
+                if (chevron) {
+                    chevron.classList.remove('rotate-180');
+                }
+            }, 100);
+        });
+    }
+});
+</script>
+
+<style>
+@keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+        transform: translate3d(0,0,0);
+    }
+    40%, 43% {
+        transform: translate3d(0,-8px,0);
+    }
+    70% {
+        transform: translate3d(0,-4px,0);
+    }
+    90% {
+        transform: translate3d(0,-2px,0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes checkmark {
+    0% {
+        stroke-dashoffset: 100;
+        opacity: 0;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-scaleIn {
+    animation: scaleIn 0.6s ease-out;
+}
+
+.animate-bounceIn {
+    animation: bounceIn 0.8s ease-out;
+}
+
+.animate-checkmark {
+    animation: checkmark 0.5s ease-in-out 0.3s both;
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.delay-300 {
+    animation-delay: 0.3s;
+}
+
+.delay-500 {
+    animation-delay: 0.5s;
+}
+
+.delay-700 {
+    animation-delay: 0.7s;
+}
+
+.delay-900 {
+    animation-delay: 0.9s;
+}
+
+.delay-1100 {
+    animation-delay: 1.1s;
+}
+
+.delay-1200 {
+    animation-delay: 1.2s;
+}
+
+.tm-text-gold {
+    color: #d4af37;
+}
+
+/* Hide number input arrows */
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantity-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Selected counter styling */
+.selected-counter {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #d4af37, #8B4513);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 15px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+    min-width: 200px;
+    text-align: center;
+}
+
+.selected-counter .total {
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+/* Modal animations */
+#orderSummaryModal {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Filter Dropdown Styles */
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.filter-dropdown-menu {
+    min-width: 150px;
+}
+
+.filter-dropdown-menu button {
+    transition: background-color 0.2s;
+}
+
+/* Print styles */
+@media print {
+    .place-order-btn,
+    .selected-counter {
+        display: none !important;
+    }
+}
+</style>
+
+<!-- Selected Items Counter -->
+<div id="selectedCounter" class="fixed top-4 right-4 bg-gradient-to-r from-amber-500 to-amber-700 text-white p-4 rounded-xl shadow-xl z-40">
+    <div class="flex items-center justify-between mb-2">
+        <h3 class="font-bold text-lg">🛒 Your Cart</h3>
+        <button onclick="toggleCartDetails()" class="text-white hover:text-amber-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Summary view (always visible) -->
+    <div class="flex justify-between items-center">
+        <div>
+            <span class="text-sm">Total Items:</span>
+            <span class="font-bold ml-2">{{total_items_count}}</span>
+        </div>
+        <div>
+            <span class="text-sm">Total:</span>
+            <span class="font-bold ml-2">Rs: {{grand_total|floatformat:2}}</span>
+        </div>
+    </div>
+
+    <!-- Detailed view (expandable) -->
+    <div id="cartDetails" class="mt-3 pt-3 border-t border-white border-opacity-30 hidden">
+        {% if regular_cart.exists %}
+        <div class="flex justify-between text-sm mb-1">
+            <span class="text-amber-200">Regular:</span>
+            <span>{{regular_cart.count}} items</span>
+        </div>
+        {% endif %}
+
+        {% if combo_cart.exists %}
+        <div class="flex justify-between text-sm mb-1">
+            <span class="text-purple-200">Combo Offers:</span>
+            <span>{{combo_cart.count}} items</span>
+        </div>
+        {% endif %}
+
+        {% if special_cart.exists %}
+        <div class="flex justify-between text-sm mb-1">
+            <span class="text-red-200">Special Offers:</span>
+            <span>{{special_cart.count}} items</span>
+        </div>
+        {% endif %}
+
+        <button onclick="showOrderSummary()" class="w-full mt-3 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg font-semibold transition duration-300">
+            View Full Order
+        </button>
+    </div>
+
+</div>
+
+            </table>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="parallax-window" style="background-image: url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80')">
+        <div class="container mx-auto py-24">
+            <div class="mx-auto sm:px-0 px-4" style="max-width: 800px;">
+               <div class="bg-white bg-opacity-80 p-12 pb-14 rounded-xl mb-5">
+    <h2 class="mb-6 tm-text-green text-4xl font-medium">About Us</h2>
+    <p class="mb-6 text-base leading-8">
+        At our prestigious five-star establishment, we redefine luxury dining through an unparalleled culinary journey. Our world-renowned chefs, trained in Michelin-starred kitchens across Europe and Asia, curate each dish as a masterpiece of flavor, artistry, and innovation. We exclusively source premium ingredients—from truffles harvested in Italian forests to Kobe beef from Japan's finest ranches.
+    </p>
+    <p class="mb-6 text-base leading-8">
+        Our commitment to excellence extends beyond the plate. Each culinary creation is presented with meticulous attention to detail, complemented by an award-winning sommelier's wine pairings and impeccable tableside service. The dining experience is enhanced by our elegant ambiance, featuring crystal chandeliers, bespoke china, and panoramic views of the city skyline.
+    </p>
+    <p class="text-base leading-8">
+        We take pride in offering personalized gastronomic experiences, including private chef's table events and customized tasting menus. Our dedicated service team ensures every moment exceeds the expectations of our distinguished guests, making each visit an unforgettable celebration of luxury dining at its finest.
+    </p>
+</div>
+                <a href="#contact" class="inline-block tm-bg-green transition text-white text-xl pt-3 pb-4 px-8 rounded-md hover:bg-green-700">
+                    <svg class="w-6 h-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                    </svg>
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="parallax-window relative" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+        <div class="container mx-auto pt-24 pb-48">
+            <div class="flex flex-col lg:flex-row justify-around lg:items-stretch">
+                <div class="flex-1 rounded-xl px-10 py-12 m-5 bg-white bg-opacity-80 tm-item-container">
+                    <h2 class="text-3xl mb-6 tm-text-green">Contact Us</h2>
+                    <p class="text-2xl mb-6 tm-text-green">
+                        We'd love to hear from you! Whether you have questions about our menu, want to make a reservation, or just want to share your feedback, please don't hesitate to get in touch.
+                    </p>
+                    <p class="mb-10 text-lg">
+                        <span class="text-2xl mb-6 tm-text-green">Tel: <a href="tel:0100200340" class="hover:text-yellow-600 transition">010-020-0340</a></span><br>
+                        <span class="text-2xl mb-6 tm-text-green">Email: <a href="mailto:info@platemate.com" class="hover:text-yellow-600 transition">info@platemate.com</a></span><br>
+                        <span class="text-2xl mb-6 tm-text-green">Address: 123 Cafe Street, Foodville, FK 12345</span>
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="tm-text-green hover:text-amber-700 transition">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="tm-text-green hover:text-amber-700 transition">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="tm-text-green hover:text-amber-700 transition">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <footer class="absolute bottom-0 left-0 w-full">
+                    <span class="text-white container mx-auto p-8 text-lg flex-col justify-between">Copyright © 2023 Platemate. All rights reserved.</span>
+                    <button class="inline-block tm-bg-green transition text-white text-xl pt-3 pb-4 px-8 rounded-md hover:bg-green-700"><span class="mt-5 md:mt-0"><a href="/login/" class="hover:text-amber-300 transition">Login</a></span></button>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Simple JavaScript for mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const navMenu = document.querySelector('nav ul');
+            navMenu.classList.toggle('hidden');
+            navMenu.classList.toggle('flex');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+<script>
+function toggleCartDetails() {
+    const details = document.getElementById('cartDetails');
+    details.classList.toggle('hidden');
+}
+
+// Auto-hide cart details after 10 seconds
+setTimeout(() => {
+    const details = document.getElementById('cartDetails');
+    if (!details.classList.contains('hidden')) {
+        details.classList.add('hidden');
+    }
+}, 10000);
+    // Order Tracking Functions
+function showOrderTracking() {
+    const modal = document.getElementById('orderTrackingModal');
+    modal.classList.remove('hidden');
+}
+
+function closeOrderTracking() {
+    const modal = document.getElementById('orderTrackingModal');
+    modal.classList.add('hidden');
+}
+
+function refreshOrders() {
+    // Show loading animation
+    const refreshBtn = event.currentTarget;
+    refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+    // Reload page after 1 second
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
+}
+
+function markAsServed(orderId) {
+    if (confirm('Mark this order as served?')) {
+        // Send AJAX request to update status
+        fetch(`/mark_order_served/${orderId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.reload();
+            }
+        });
+    }
+}
+
+// Helper function to get CSRF token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+</body>
+</html>

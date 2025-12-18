@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #4361ee;
+            --primary-light: #6a7ef0;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4bb543;
+            --success-light: #6fc769;
+            --warning: #ffcc00;
+            --warning-light: #ffd740;
+            --danger: #dc3545;
+            --danger-light: #e35d6a;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fb 0%, #eef1f7 100%);
+            color: var(--dark);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 280px;
+            background:darkorange;
+            color: white;
+            padding: 25px 0;
+            transition: all 0.3s;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            padding: 0 25px 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 25px;
+        }
+
+        .logo i {
+            font-size: 28px;
+            margin-right: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo h1 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0 20px;
+        }
+
+        .nav-links li {
+            margin-bottom: 8px;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            padding: 14px 18px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .nav-links i {
+            margin-right: 12px;
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .header h2 {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 28px;
+            position: relative;
+        }
+
+        .header h2:after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .user-info img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-right: 12px;
+            object-fit: cover;
+            border: 2px solid var(--primary-light);
+        }
+
+        .user-details h4 {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .user-details p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* Dashboard Cards */
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+
+        .card:nth-child(1):before {
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        }
+
+        .card:nth-child(2):before {
+            background: linear-gradient(90deg, var(--success), var(--success-light));
+        }
+
+        .card:nth-child(3):before {
+            background: linear-gradient(90deg, var(--warning), var(--warning-light));
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .card-icon.primary {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+        }
+
+        .card-icon.success {
+            background-color: rgba(75, 181, 67, 0.1);
+            color: var(--success);
+        }
+
+        .card-icon.warning {
+            background-color: rgba(255, 204, 0, 0.1);
+            color: var(--warning);
+        }
+
+        .card h3 {
+            font-size: 32px;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--gray);
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .card-trend {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .card-trend.up {
+            color: var(--success);
+        }
+
+        .card-trend.down {
+            color: var(--danger);
+        }
+
+        .card-trend i {
+            margin-right: 5px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .action-btn {
+            background: white;
+            border: none;
+            border-radius: 16px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .action-btn:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .action-btn i {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            background: rgba(67, 97, 238, 0.1);
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .action-btn h3 {
+            margin-bottom: 12px;
+            color: var(--dark);
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .action-btn p {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        /* Recent Activity */
+        .recent-activity {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-header h3 {
+            font-weight: 700;
+            font-size: 22px;
+            position: relative;
+        }
+
+        .section-header h3:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section-header a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-header a i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+
+        .section-header a:hover i {
+            transform: translateX(3px);
+        }
+
+        .activity-list {
+            list-style: none;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--light-gray);
+            transition: background 0.2s;
+            border-radius: 8px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .activity-item:hover {
+            background: rgba(67, 97, 238, 0.03);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 18px;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .activity-icon.order {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        }
+
+        .activity-icon.kitchen {
+            background: linear-gradient(135deg, var(--success), var(--success-light));
+        }
+
+        .activity-icon.alert {
+            background: linear-gradient(135deg, var(--warning), var(--warning-light));
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-details h4 {
+            margin-bottom: 6px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .activity-details p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .activity-time {
+            color: var(--gray);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .dashboard-cards, .action-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 15px 0;
+            }
+
+            .logo {
+                padding: 0 20px 15px;
+            }
+
+            .nav-links {
+                display: flex;
+                overflow-x: auto;
+                padding: 0 15px;
+            }
+
+            .nav-links li {
+                flex: 0 0 auto;
+                margin-right: 10px;
+                margin-bottom: 0;
+            }
+
+            .nav-links a {
+                padding: 12px 15px;
+                white-space: nowrap;
+            }
+
+            .dashboard-cards, .action-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h2>Dashboard Overview</h2>
+
+        </div>
+
+        <!-- Dashboard Cards -->
+        <div class="dashboard-cards">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon primary">
+                        <i class="fas fa-users"></i>
+                    </div>
+
+                </div>
+                <h3>{{kt.count}}</h3>
+                <p>Kitchen Handlers</p>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon success">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+
+                </div>
+                <h3>{{cm.count}}</h3>
+                <p>Completed Orders</p>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon warning">
+                        <i class="fas fa-clock"></i>
+                    </div>
+
+                </div>
+                <h3>{{pe.count}}</h3>
+                <p>Pending Orders</p>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <div class="action-btn" onclick="window.location.href='/kitchenhandler/'">
+                <i class="fas fa-users"></i>
+                <h3>Manage Kitchen Handlers</h3>
+                <p>See, edit or delete all kitchen staff</p>
+            </div>
+            <div class="action-btn" onclick="window.location.href='/register/'">
+                <i class="fas fa-user-plus"></i>
+                <h3>Add Kitchen Handlers</h3>
+                <p>Add kitchen staff members</p>
+            </div>
+            <div class="action-btn" onclick="window.location.href='/sales/'">
+                <i class="fas fa-clipboard-list"></i>
+                <h3>Sales Overview</h3>
+                <p>Check current and past kitchen orders</p>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+
+    </div>
+ <div class="sidebar">
+
+    </div>
+</body>
+</html>

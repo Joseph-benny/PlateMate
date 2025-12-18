@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Food Ordering - Sales Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 28px;
+            color: #2c3e50;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            color: #2c3e50;
+        }
+
+        .date-display {
+            font-size: 16px;
+            color: #7f8c8d;
+            background: #ecf0f1;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        .date-filter-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+        }
+
+        .date-filter-container label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .date-input {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .date-filter-btn {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .date-filter-btn:hover {
+            background: #2980b9;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-size: 14px;
+            color: #7f8c8d;
+            font-weight: 600;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .card-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .dashboard-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .chart-container, .recent-orders {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .chart-wrapper {
+            height: 300px;
+            position: relative;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .orders-table th {
+            text-align: left;
+            padding: 12px 15px;
+            border-bottom: 2px solid #f0f0f0;
+            color: #7f8c8d;
+            font-weight: 600;
+        }
+
+        .orders-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-payment-successful {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-ready {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status-served {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+
+        .no-data i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #bdc3c7;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .date-filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .date-input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                <h1>Hotel Food Ordering System - Sales Dashboard</h1>
+            </div>
+            <div class="date-display" id="current-date"></div>
+        </header>
+
+        <div class="date-filter-container">
+            <form method="post" id="date-filter-form">
+                {% csrf_token %}
+                <label for="start-date">From:</label>
+                <input type="date" id="start-date" name="date_from" class="date-input" value="{{ request.POST.date_from }}">
+                <label for="end-date">To:</label>
+                <input type="date" id="end-date" name="date_to" class="date-input" value="{{ request.POST.date_to }}">
+
+                <button class="date-filter-btn" type="button" onclick="resetFilters()" style="background: #95a5a6;">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </form>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-label">Total Orders</div>
+                <div class="stat-value">{{ total_orders }}</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Completed Orders</div>
+                <div class="stat-value">{{ completed_orders }}</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Pending Orders</div>
+                <div class="stat-value">{{ pending_orders }}</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Total Revenue</div>
+                <div class="stat-value">Rs. {{ total_revenue }}</div>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="chart-container">
+                <div class="section-header">
+                    <div class="section-title">Sales Overview</div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="salesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="recent-orders">
+                <div class="section-header">
+                    <div class="section-title">Recent Orders</div>
+                </div>
+                {% if vo %}
+                <div style="overflow-x: auto;">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Table No</th>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in vo|slice:":10" %}
+                            <tr>
+                                <td>{{ order.id }}</td>
+                                <td>{{ order.table }}</td>
+                                <td>{{ order.get_item_name }}</td>
+                                <td>{{ order.quantity }}</td>
+                                <td>{{ order.date|date:"Y-m-d H:i" }}</td>
+                                <td>
+                                    <span class="order-status status-{{ order.status|lower|cut:' ' }}">
+                                        {{ order.status }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="no-data">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>No Orders Found</h3>
+                    <p>No orders match the selected criteria.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set current date
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Set default date values if not already set
+        const today = new Date();
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(today.getDate() - 7);
+
+        if (!document.getElementById('start-date').value) {
+            document.getElementById('start-date').valueAsDate = oneWeekAgo;
+        }
+        if (!document.getElementById('end-date').value) {
+            document.getElementById('end-date').valueAsDate = today;
+        }
+
+        // Reset filters function
+        function resetFilters() {
+            document.getElementById('start-date').value = '';
+            document.getElementById('end-date').value = '';
+            document.getElementById('date-filter-form').submit();
+        }
+
+        // Initialize chart with sample data
+        const ctx = document.getElementById('salesChart').getContext('2d');
+
+        // Sample data for the chart - you would replace this with actual data from Django
+        const salesChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Sales (Rs.)',
+                    data: [{{ total_revenue|default:"0" }}, 0, 0, 0, 0, 0, 0],
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return 'Rs. ' + value;
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Update chart with actual data if available
+        function updateChartWithData() {
+            // This function would be called with actual data from your Django view
+            // For now, we'll use the sample data
+        }
+
+        // Initialize
+        updateChartWithData();
+    </script>
+</body>
+</html>
