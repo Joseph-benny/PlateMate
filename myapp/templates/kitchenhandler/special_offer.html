@@ -4,20 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Special Offer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&family=Oswald:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Paste the provided CSS into this style block for a complete standalone file */
-        /* ... Your provided CSS ... */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #f5f5f5;
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #FFF8DC, #FFE4B5);
             color: #333;
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         .container {
@@ -26,216 +29,196 @@
             padding: 20px;
         }
 
+        /* Header matching Platemate theme */
         header {
-            background-color: #2c3e50;
+            background: linear-gradient(135deg, #FF8C00, #FF6347);
             color: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 25px 0;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+            border-bottom: 3px solid #FFD700;
+            margin-bottom: 30px;
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: white;
         }
 
         .logo span {
-            color: #e74c3c;
+            color: #FFD700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 20px;
-        }
-
-        nav ul li a {
+        /* Button Styles matching Platemate theme */
+        .btn {
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
             color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #e74c3c;
-        }
-
-        /* Updated Search Bar Styles */
-        .flex.justify-center.mb-12 {
-            margin-bottom: 0;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .flex[style*="max-width: 1000px"] {
-            width: 100%;
-            max-width: 100% !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        input[type="search"] {
-            width: 100%;
-            padding: 12px 20px;
-            border: 2px solid #3498db !important;
-            border-right: none !important;
-            font-size: 16px;
-            background: white;
-            color: #333;
-            transition: all 0.3s ease;
-            height: 50px !important;
-        }
-
-        input[type="search"]::placeholder {
-            color: #888;
-        }
-
-        input[type="search"]:focus {
-            border-color: #2980b9 !important;
-            background: #f8f9fa;
-            outline: none;
-        }
-
-        button[type="submit"] {
-            background: #3498db !important;
-            color: white;
-            border: 2px solid #3498db;
-            border-left: none;
-            padding: 0 25px;
-            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 24px;
             font-weight: 600;
+            font-size: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
-            height: 50px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
         }
 
-        button[type="submit"]:hover {
-            background: #2980b9 !important;
-            border-color: #2980b9;
-            transform: none;
+        .btn:hover {
+            background: linear-gradient(135deg, #E55A2B, #E0821A);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+            color: white;
+            text-decoration: none;
         }
 
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr; /* Simplified layout for this page */
-            gap: 30px;
-            margin-top: 30px;
+        .btn-danger1 {
+            background: linear-gradient(135deg, #FF8C00, #FF6347);
+            border: 2px solid #FF4500;
         }
 
+        .btn-danger1:hover {
+            background: linear-gradient(135deg, #E67E00, #E0553E);
+            border-color: #FF4500;
+        }
+
+        /* Card Styles matching Platemate theme */
         .card {
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 25px;
-            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #E5E7EB;
         }
 
         h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
+            font-family: 'Oswald', sans-serif;
+            color: #FF4500;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #FFD700;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
+        h3 {
+            font-family: 'Oswald', sans-serif;
+            color: #FF6347;
+            font-size: 22px;
+            margin: 20px 0 15px 0;
+        }
+
+        /* Form Styles */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #555;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #FF4500;
+            font-size: 16px;
         }
 
-        input[type="text"],
-        input[type="number"],
-        input[type="file"],
-        select {
+        input[type="text"] {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 14px;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
             font-size: 16px;
-            transition: border 0.3s;
+            transition: all 0.3s ease;
+            font-family: 'Raleway', sans-serif;
+            background: white;
         }
 
-        input:focus, select:focus {
-            border-color: #3498db;
+        input:focus {
+            border-color: #FFD700;
             outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+            background: #FFF8DC;
         }
 
-        .btn {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #2980b9;
-        }
-
-        .btn-danger {
-            background-color: #e74c3c;
-        }
-
-        .btn-danger:hover {
-            background-color: #c0392b;
-        }
-
-        .btn-danger1 {
-            background-color:darkorange;
-        }
-         .btn-danger1:hover {
-            background-color:darkred;
-        }
-
+        /* Item Selection Grid matching Platemate theme */
         .item-selection-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            max-height: 400px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-height: 500px;
             overflow-y: auto;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 15px;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #FFF8DC, #FFE4B5);
+            margin-top: 15px;
         }
 
         .menu-item-radio {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            background: #f9f9f9;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #eee;
-            transition: all 0.2s;
-            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
         }
 
         .menu-item-radio:hover {
-            background: #f0f0f0;
-            border-color: #ccc;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: #FFD700;
         }
 
         .menu-item-radio.selected {
-            background: #e3f2fd;
-            border-color: #3498db;
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+            background: linear-gradient(135deg, #FFE4B5, #FFDAB9);
+            border: 2px solid #FF4500;
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.2);
+            transform: translateY(-3px);
+            position: relative;
+        }
+
+        .menu-item-radio.selected::before {
+            content: '🔥 SPECIAL';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(135deg, #FF8C00, #FF6347);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 10px;
+            font-weight: 700;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-item-radio img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+            border: 2px solid #FFD700;
         }
 
         .menu-item-radio input[type="radio"] {
@@ -243,35 +226,415 @@
             height: 20px;
             margin-right: 10px;
             cursor: pointer;
+            accent-color: #FF4500;
         }
 
+        .menu-item-radio label {
+            flex: 1;
+            cursor: pointer;
+            font-weight: 500;
+            color: #8B4513;
+            font-size: 15px;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Price Calculation Section */
+        .price-calculation {
+            background: linear-gradient(135deg, #FFF8DC, #FFE4B5);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border: 2px solid #FFD700;
+        }
+
+        .price-calculation h3 {
+            color: #FF4500;
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-calculation h3 i {
+            color: #FFD700;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+            border-top: 2px solid #FFD700;
+            margin-top: 15px;
+            padding-top: 20px;
+            font-size: 1.2em;
+        }
+
+        .price-label {
+            font-weight: 500;
+            color: #8B4513;
+        }
+
+        .price-value {
+            font-weight: 600;
+            color: #8B4513;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .discount-badge {
+            background: linear-gradient(135deg, #FF8C00, #FF6347);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .final-price {
+            color: #2E8B57;
+            font-weight: 800;
+            font-size: 24px;
+        }
+
+        /* Button at bottom */
+        .btn-submit {
+            background: linear-gradient(135deg, #FF8C00, #FF6347);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 16px 32px;
+            font-weight: 600;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #E67E00, #E0553E);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Existing Offers List matching Platemate theme */
         .offer-item-list {
             list-style: none;
             padding: 0;
         }
 
         .offer-item {
-            background: #fff;
-            padding: 10px 15px;
-            border-bottom: 1px solid #eee;
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #FF6347;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .offer-item:last-child {
-            border-bottom: none;
+        .offer-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .offer-item::before {
+            content: '🔥';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 20px;
         }
 
         .offer-item strong {
-            color: #2c3e50;
+            color: #FF4500;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
         }
-        /* End of CSS paste */
+
+        .offer-item p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.5;
+            margin: 5px 0;
+        }
+
+        /* Messages styling */
+        .messages {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .messages p {
+            margin: 0;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Loading animation */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading {
+            animation: spin 1s linear infinite;
+        }
+
+        /* Special Offer Tag */
+        .special-tag {
+            background: linear-gradient(135deg, #FF8C00, #FF6347);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        /* Scrollbar styling */
+        .item-selection-grid::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .item-selection-grid::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .item-selection-grid::-webkit-scrollbar-thumb {
+            background: #FFD700;
+            border-radius: 10px;
+        }
+
+        .item-selection-grid::-webkit-scrollbar-thumb:hover {
+            background: #FF8C00;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .item-selection-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .item-selection-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 28px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .btn-submit {
+                padding: 14px 24px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .item-selection-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .menu-item-radio {
+                padding: 12px;
+            }
+
+            .menu-item-radio img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .price-calculation {
+                padding: 15px;
+            }
+
+            .final-price {
+                font-size: 20px;
+            }
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px dashed #FFD700;
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        .empty-state p {
+            font-size: 18px;
+            color: #8B4513;
+            margin-bottom: 20px;
+        }
+
+        /* Success message */
+        .success-message {
+            background: linear-gradient(135deg, #2E8B57, #3CB371);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+            border-left: 4px solid #28a745;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        /* Required field indicator */
+        .required::after {
+            content: ' *';
+            color: #FF4500;
+        }
+
+        /* Tooltip for radio items */
+        .menu-item-radio {
+            position: relative;
+        }
+
+        .menu-item-radio:hover::after {
+            content: 'Click to select for special offer';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #FF4500;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-item-radio:hover::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: #FF4500 transparent transparent transparent;
+            z-index: 10;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Add Your<span>Menu</span></div>
-                <button class="btn btn-danger1" onclick="window.location.href='{% url "view_menu" %}'">Back to Menu</button>
+                <div class="logo">Add Special<span>Offers</span></div>
+                <button class="btn btn-danger1" onclick="window.location.href='{% url "view_menu" %}'">
+                    <i class="fas fa-arrow-left"></i> Back to Menu
+                </button>
             </div>
         </div>
     </header>
@@ -284,7 +647,12 @@
                 {% if messages %}
                     <div class="messages">
                         {% for message in messages %}
-                            <p style="color:{% if message.tags == 'error' %}#e74c3c{% else %}#27ae60{% endif %}; font-weight: bold;">{{ message }}</p>
+                            <p style="color:{% if message.tags == 'error' %}#FF4500{% else %}#2E8B57{% endif %};
+                                      background:{% if message.tags == 'error' %}#FFE4E4{% else %}#E8F6F3{% endif %};
+                                      border-left: 4px solid {% if message.tags == 'error' %}#FF4500{% else %}#2E8B57{% endif %};">
+                                <i class="fas fa-{% if message.tags == 'error' %}exclamation-triangle{% else %}check-circle{% endif %}"></i>
+                                {{ message }}
+                            </p>
                         {% endfor %}
                     </div>
                 {% endif %}
@@ -293,114 +661,236 @@
                     {% csrf_token %}
 
                     <div class="form-group">
-                        <label for="offer-name">Special Offer Name</label>
-                        <input type="text" id="offer-name" name="offer_name" placeholder="E.g., Weekend Family Combo" required>
+                        <label for="offer-name" class="required">
+                            <i class="fas fa-tag"></i> Special Offer Name
+                        </label>
+                        <input type="text" id="offer-name" name="offer_name" placeholder="E.g., Weekend Family Combo, Happy Hour Special" required>
                     </div>
 
-                    <h3>Select a Menu Item for the Special Offer:</h3>
-                    <div class="form-group item-selection-grid">
-    {% for item in menu_items %}
-        <div class="menu-item-radio">
-            {% if item.itemimage %}
-            <img src="{{ item.itemimage.url }}" alt="{{ item.itemname }}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px; border-radius: 4px;">
-            {% endif %}
-            <input type="radio"
-                   id="item_{{ item.id }}"
-                   name="selected_item"
-                   value="{{ item.id }}"
-                   data-price="{{ item.itemprice }}">
-            <label for="item_{{ item.id }}" style="cursor: pointer;">
-                {{ item.itemname }} (₹{{ item.itemprice }})
-            </label>
-        </div>
-    {% empty %}
-        <p>No menu items available.</p>
-    {% endfor %}
-</div>
-                    <div class="form-group">
-    <hr style="margin: 20px 0;">
-    <h3 style="color: #3498db;">💰 Price Calculation</h3>
-    <p>Original Price: <strong id="original-price" style="font-size: 1.2em;">₹0</strong></p>
-    <p>Discount (30%): <strong style="color: #e67e22;">30% OFF</strong></p>
-    <p>Final Offer Price: <strong id="final-price" style="font-size: 1.4em; color: #27ae60;">₹0</strong></p>
+                    <h3>🔥 Select a Menu Item for the Special Offer:</h3>
+                    <div class="item-selection-grid">
+                        {% for item in menu_items %}
+                        <div class="menu-item-radio">
+                            {% if item.itemimage %}
+                            <img src="{{ item.itemimage.url }}" alt="{{ item.itemname }}">
+                            {% else %}
+                            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #FFF8DC, #FFE4B5); border-radius: 8px; margin-right: 15px; display: flex; align-items: center; justify-content: center; border: 2px solid #FFD700;">
+                                <i class="fas fa-utensils" style="color: #FF8C00; font-size: 24px;"></i>
+                            </div>
+                            {% endif %}
+                            <input type="radio"
+                                   id="item_{{ item.id }}"
+                                   name="selected_item"
+                                   value="{{ item.id }}"
+                                   data-price="{{ item.itemprice }}">
+                            <label for="item_{{ item.id }}">
+                                <strong>{{ item.itemname }}</strong>
+                                <div style="color: #D4AF37; font-weight: 700; margin-top: 5px;">
+                                    <i class="fas fa-tag"></i> ₹{{ item.itemprice }}
+                                </div>
+                            </label>
+                        </div>
+                        {% empty %}
+                        <div class="empty-state">
+                            <i class="fas fa-utensils"></i>
+                            <p>No menu items available. Please add items to create special offers.</p>
+                        </div>
+                        {% endfor %}
+                    </div>
 
-    <input type="hidden" id="offer-price-input" name="offer_price" value="0" required>
-    <hr style="margin: 20px 0;">
-</div>
-                    <button type="submit" class="btn">Create Special Offer</button>
+                    <div class="price-calculation">
+                        <h3><i class="fas fa-calculator"></i> 💰 Price Calculation</h3>
+                        <div class="price-row">
+                            <span class="price-label">Original Price:</span>
+                            <span class="price-value original-price" id="original-price">₹0</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-label">Discount:</span>
+                            <span class="discount-badge">30% OFF</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-label">Final Offer Price:</span>
+                            <span class="price-value final-price" id="final-price">₹0</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-label">You Save:</span>
+                            <span class="price-value" id="you-save" style="color: #2E8B57; font-weight: 700;">₹0</span>
+                        </div>
+
+                        <input type="hidden" id="offer-price-input" name="offer_price" value="0" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-fire"></i> Create Special Offer
+                    </button>
                 </form>
             </div>
 
             <div class="card">
-                <h2>Existing Special Offers</h2>
+                <h2>🔥 Existing Special Offers</h2>
+                {% if existing_offers %}
                 <ul class="offer-item-list">
                     {% for offer in existing_offers %}
                         <li class="offer-item">
                             <strong>{{ offer.offer_name }}</strong>
-                            <p>Item: {{ offer.items.itemname }} - ₹{{ offer.offer_price }}</p>
+                            <p><i class="fas fa-utensils"></i> Item: {{ offer.items.itemname }}</p>
+                            <p><i class="fas fa-tag"></i> Original Price: <span style="text-decoration: line-through; color: #999;">₹{{ offer.items.itemprice }}</span></p>
+                            <p><i class="fas fa-bolt"></i> Special Price: <strong style="color: #FF4500; font-size: 1.2em;">₹{{ offer.offer_price }}</strong></p>
+                            <p><i class="fas fa-percentage"></i> Discount: <strong style="color: #2E8B57;">{{ offer.discount_percentage|floatformat:0 }}% OFF</strong></p>
                         </li>
-                    {% empty %}
-                        <p>No special offers have been created yet.</p>
                     {% endfor %}
                 </ul>
+                {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-fire"></i>
+                    <p>No special offers have been created yet.</p>
+                    <p style="color: #666; font-size: 16px;">Create your first special offer above!</p>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const radioButtons = document.querySelectorAll('input[name="selected_item"]');
-        const originalPriceElement = document.getElementById('original-price');
-        const finalPriceElement = document.getElementById('final-price');
-        const offerPriceInput = document.getElementById('offer-price-input');
-        const DISCOUNT_RATE = 0.30; // 30% discount
 
-        function calculatePrices() {
-            let selectedPrice = 0;
-            let selectedItem = null;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const radioButtons = document.querySelectorAll('input[name="selected_item"]');
+            const originalPriceElement = document.getElementById('original-price');
+            const finalPriceElement = document.getElementById('final-price');
+            const youSaveElement = document.getElementById('you-save');
+            const offerPriceInput = document.getElementById('offer-price-input');
+            const DISCOUNT_RATE = 0.30; // 30% discount
+            const submitButton = document.querySelector('.btn-submit');
 
-            // 1. Find the selected radio button
-            radioButtons.forEach(radio => {
-                if (radio.checked) {
-                    // The item price is stored in the data-price attribute of the radio button
-                    const price = parseFloat(radio.dataset.price);
-                    if (!isNaN(price)) {
-                        selectedPrice = price;
-                        selectedItem = radio;
+            function calculatePrices() {
+                let selectedPrice = 0;
+                let selectedItem = null;
+
+                // 1. Find the selected radio button
+                radioButtons.forEach(radio => {
+                    if (radio.checked) {
+                        const price = parseFloat(radio.dataset.price);
+                        if (!isNaN(price)) {
+                            selectedPrice = price;
+                            selectedItem = radio;
+                        }
                     }
+                });
+
+                // 2. Calculate the discounted price and savings
+                const discountAmount = selectedPrice * DISCOUNT_RATE;
+                let finalPrice = selectedPrice - discountAmount;
+
+                // Round all prices to 2 decimal places
+                selectedPrice = Math.round(selectedPrice * 100) / 100;
+                finalPrice = Math.round(finalPrice * 100) / 100;
+                const savings = Math.round(discountAmount * 100) / 100;
+
+                // 3. Update the display
+                originalPriceElement.textContent = `₹${selectedPrice.toFixed(2)}`;
+                finalPriceElement.textContent = `₹${finalPrice.toFixed(2)}`;
+                youSaveElement.textContent = `₹${savings.toFixed(2)}`;
+
+                // Set the value for form submission
+                offerPriceInput.value = finalPrice;
+
+                // 4. Update visual selection state
+                document.querySelectorAll('.menu-item-radio').forEach(item => {
+                    item.classList.remove('selected');
+                });
+
+                if (selectedItem) {
+                    selectedItem.closest('.menu-item-radio').classList.add('selected');
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = '<i class="fas fa-fire"></i> Create Special Offer';
+                } else {
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please select a menu item';
                 }
-            });
 
-            // 2. Calculate the discounted price
-            const discountAmount = selectedPrice * DISCOUNT_RATE;
-            let finalPrice = selectedPrice - discountAmount;
-
-            // Round the final price to 2 decimal places
-            finalPrice = Math.round(finalPrice * 100) / 100;
-            selectedPrice = Math.round(selectedPrice * 100) / 100;
-
-            // 3. Update the display and the hidden input
-            originalPriceElement.textContent = `₹${selectedPrice.toFixed(2)}`;
-            finalPriceElement.textContent = `₹${finalPrice.toFixed(2)}`;
-            offerPriceInput.value = finalPrice; // Set the value for form submission
-
-            // 4. Update visual selection state
-            document.querySelectorAll('.menu-item-radio').forEach(item => {
-                item.classList.remove('selected');
-            });
-
-            if (selectedItem) {
-                selectedItem.closest('.menu-item-radio').classList.add('selected');
+                // 5. Add visual feedback for selection
+                if (selectedItem) {
+                    // Add pulse animation to final price
+                    finalPriceElement.style.animation = 'pulse 0.5s ease-out';
+                    setTimeout(() => {
+                        finalPriceElement.style.animation = '';
+                    }, 500);
+                }
             }
-        }
 
-        // Attach the calculation function to all radio button change events
-        radioButtons.forEach(radio => {
-            radio.addEventListener('change', calculatePrices);
+            // Attach the calculation function to all radio button change events
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', calculatePrices);
+
+                // Also allow clicking the entire container to select
+                const container = radio.closest('.menu-item-radio');
+                container.addEventListener('click', function(e) {
+                    if (e.target !== radio) {
+                        radio.checked = true;
+                        radio.dispatchEvent(new Event('change'));
+                    }
+                });
+            });
+
+            // Form submission handling
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(e) {
+                const selectedItem = document.querySelector('input[name="selected_item"]:checked');
+                if (!selectedItem) {
+                    e.preventDefault();
+                    alert('Please select a menu item for the special offer.');
+                    return;
+                }
+
+                // Show loading state
+                const originalText = submitButton.innerHTML;
+                submitButton.innerHTML = '<i class="fas fa-spinner loading"></i> Creating Special Offer...';
+                submitButton.disabled = true;
+
+                // Allow form to submit normally
+                // The form will reset on successful submission
+            });
+
+            // Run calculation once on page load
+            calculatePrices();
+
+            // Add success message if URL has success parameter
+            if (window.location.search.includes('success=true')) {
+                const successMsg = document.createElement('div');
+                successMsg.className = 'success-message';
+                successMsg.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 36px;">🎉</div>
+                        <div>
+                            <h3 style="margin: 0 0 5px 0; color: white;">Special Offer Created Successfully!</h3>
+                            <p style="margin: 0; opacity: 0.9;">Your special offer has been added and is now available to customers.</p>
+                        </div>
+                    </div>
+                `;
+                document.querySelector('.card').insertBefore(successMsg, document.querySelector('form'));
+                successMsg.style.display = 'block';
+
+                // Scroll to show success message
+                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // Remove success message after 5 seconds
+                setTimeout(() => {
+                    successMsg.style.opacity = '0';
+                    successMsg.style.transform = 'translateY(-10px)';
+                    setTimeout(() => successMsg.remove(), 300);
+                }, 5000);
+            }
+
+            // Add auto-scroll to selected item
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const container = this.closest('.menu-item-radio');
+                    const grid = document.querySelector('.item-selection-grid');
+
+                    // Scroll to make the selected item visible
+                    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            });
         });
-
-        // Run calculation once on page load
-        calculatePrices();
-    });
-</script>
+    </script>
 </body>
 </html>

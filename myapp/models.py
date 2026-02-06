@@ -1,11 +1,14 @@
 from django.db import models
 
 class Register(models.Model):
+    kh_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    phone = models.CharField(max_length=20,null=True,blank=True)
+    phone = models.CharField(max_length=20, null=True, blank=True)
     password = models.CharField(max_length=100)
-    rights = models.CharField(max_length=100,default='user')
+    rights = models.CharField(max_length=100, default='user')
+    is_active = models.BooleanField(default=True)   # REQUIRED FOR BLOCK
+
     def __str__(self):
         return self.name
 

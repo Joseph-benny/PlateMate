@@ -146,6 +146,7 @@ def register(request):
         p=request.POST.get("password")
         reg=Register(name=n,email=e,phone=ph,password=p,rights='Kitchen Handler')
         reg.save()
+        print(reg.id)
         msg=True
     return render(request, "register.html",{"msg":msg})
 
@@ -888,3 +889,22 @@ def specialoffer(request):
 
 def orders(request):
     return render(request, 'user/orders.html')
+
+def is_admin(user):
+    return user.is_authenticated and user.is_staff
+
+
+
+    if not handler:
+        messages.error(request, "Kitchen handler not found.")
+        return redirect('some_default_page')  # Better than HTTP_REFERER
+
+    # Optional: Check if the user is actually a kitchen handler
+    # if not handler.is_kitchen_handler:
+    #     messages.error(request, "This user is not a kitchen handler.")
+    #     return redirect('kitchen_handler_list')
+
+    handler.delete()
+    messages.success(request, "Kitchen handler deleted successfully.")
+
+    return redirect('kitchen_handler_list')  # Redirect to a specific view instead of HTTP_REFERER

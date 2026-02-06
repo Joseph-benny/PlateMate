@@ -664,8 +664,8 @@
             <!-- UPI Payment Details -->
             <div class="payment-details" id="upi-details">
 
-                <div class="qr-container">
-                    <img src="{% static 'images/upi1.jpg' %}" alt="UPI QR Code" class="qr-image">
+                <div class="qr-container" id="qrcode">
+
                 </div>
                 <div class="instructions">
                     <h4>📋 How to pay with UPI</h4>
@@ -755,7 +755,10 @@
                 // Update button text based on selection
                 const btnText = document.getElementById('btn-text');
                 if (method === 'upi') {
+                    generateQR();
+
                     btnText.textContent = 'Confirm UPI Payment';
+
                 } else if (method === 'cash') {
                     btnText.textContent = 'Confirm Cash Payment';
                 } else {
@@ -770,6 +773,28 @@
                 }
             });
         });
+
+        let qr;
+        function generateQR() {
+            const amount = {{total}};
+
+            if (!amount || amount <= 0) {
+                alert("Please enter a valid amount");
+                return;
+            }
+
+            // Example data encoded in QR
+            const qrData = `upi://pay?pa=josephbennythonakkaraparayil@oksbi&pn=JosephBenny&am=${amount}&cu=INR`;
+            console.log(amount);
+            // Clear old QR
+            document.getElementById("qrcode").innerHTML = "";
+
+            qr = new QRCode(document.getElementById("qrcode"), {
+                text: qrData,
+                width: 200,
+                height: 200
+            });
+        }
 
         // Initialize with cash payment selected
         document.getElementById('cash-option').classList.add('selected');
@@ -901,5 +926,7 @@
         const totalDisplay = document.getElementById('total-display');
         totalDisplay.innerHTML += '<span class="tooltip">ℹ️<span class="tooltip-text">Inclusive of all taxes and charges</span></span>';
     </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+</script>
 </body>
 </html>
